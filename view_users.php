@@ -73,7 +73,22 @@
                       <?php } ?>
                     </td>
                   </tr>
-                  <?php endforeach; } ?>                
+                  <?php endforeach; } ?>  
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <th>User ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Login ID</th>
+                    <th>User Type</th>
+                    <th>Employee ID</th>
+                    <th>Position</th>
+                    <th>Teamleader</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </tfoot>              
                 </tfoot>
               </table>
             </div>

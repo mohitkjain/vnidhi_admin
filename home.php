@@ -18,7 +18,9 @@
       header('Content-type: application/json');
       $data = file_get_contents($url);
       $lead_data = json_decode($data);
-
+      $active_leads;
+      $accepted_leads;
+      $declined_leads;
       if(isset($lead_data))
       {
     ?>
@@ -30,7 +32,7 @@
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h3><?php echo $lead_data[0]->total_leads; ?></h3>
+              <h3><?php echo $lead_data->total_leads; ?></h3>
 
               <p>Total Leads</p>
             </div>
@@ -44,7 +46,7 @@
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3><?php echo $lead_data[0]->active_leads; ?></h3>
+              <h3><?php echo $active_leads =  $lead_data->active_leads; ?></h3>
 
               <p>Active Leads</p>
             </div>
@@ -59,7 +61,7 @@
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3><?php echo $lead_data[0]->accepted_leads; ?></h3>
+              <h3><?php echo $accepted_leads = $lead_data->accepted_leads; ?></h3>
 
               <p>Accepted Leads</p>
             </div>
@@ -76,7 +78,7 @@
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              <h3><?php echo $lead_data[0]->declined_leads; ?></h3>
+              <h3><?php echo $declined_leads = $lead_data->declined_leads; ?></h3>
 
               <p>Declined Leads</p>
             </div>
@@ -114,33 +116,41 @@
 				  <div id="calendar" style="width: 100%"></div>
 				</div>
 
-			  </div>
+        </div>
+      <?php
+      $url = "http://test.vaibhavnidhi.com/api/admin/employee_teams_stats";
+      header('Content-type: application/json');
+      $data = file_get_contents($url);
+      $employee_team_data = json_decode($data);
+
+      if(isset($employee_team_data))
+      {
+    ?>
 			<div class="row">
 				<div class="col-md-6">
 					<div class="info-box bg-yellow">
 						<span class="info-box-icon"><i class="fa fa-user" aria-hidden="true"></i></span>
-
 						<div class="info-box-content">
 						  <span class="info-box-text">Total Employees</span>
-						  <span class="info-box-number">5,200</span>
+						  <span class="info-box-number"><?php echo $employee_team_data->total_employees; ?></span>
 						</div>
 						<!-- /.info-box-content -->
-					  </div>          
+					</div>          
 				</div>
 				<div class="col-md-6">
 					<!-- /.info-box -->
 				  <div class="info-box bg-green">
-					<span class="info-box-icon"><i class="fa fa-users" aria-hidden="true"></i></span>
-
-					<div class="info-box-content">
-					  <span class="info-box-text">Total Teams</span>
-					  <span class="info-box-number">92,050</span>
-					</div>
+					  <span class="info-box-icon"><i class="fa fa-users" aria-hidden="true"></i></span>
+					  <div class="info-box-content">
+					    <span class="info-box-text">Total Teams</span>
+					    <span class="info-box-number"><?php echo $employee_team_data->total_teams; ?></span>
+					  </div>
 					<!-- /.info-box-content -->
 				  </div>
 				</div>
-			</div>
-		</div>
+      </div>
+      <?php } ?>
+      </div>
 		<div class="col-md-6">
 			<!-- DONUT CHART -->
           <div class="box box-danger">
@@ -621,6 +631,7 @@
 <!-- ./wrapper -->
 
 <!-- page script -->
+
 <script>
   $(function () {
     /* ChartJS
@@ -636,19 +647,19 @@
     var pieChart       = new Chart(pieChartCanvas)
     var PieData        = [
       {
-        value    : 700,
+        value    : <?php echo $declined_leads; ?>,
         color    : '#f56954',
         highlight: '#f56954',
         label    : 'Declined'
       },
       {
-        value    : 500,
+        value    : <?php echo $accepted_leads; ?>,
         color    : '#00a65a',
         highlight: '#00a65a',
         label    : 'Accepted'
       },
       {
-        value    : 400,
+        value    : <?php echo $active_leads; ?>,
         color    : '#f39c12',
         highlight: '#f39c12',
         label    : 'Active'
