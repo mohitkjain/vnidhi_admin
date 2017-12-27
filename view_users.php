@@ -66,10 +66,11 @@
                               }  ?>
                     </td>
                     <td>
-                    <?php if($user->active == 1) ?>
-                            <a href="#" class="edt_btn"><i class="fa fa-edit"></i></a>
-                    <?php else ?>
-                            <a href="#" class="edt_btn" disabled><i class="fa fa-edit"></i></a>
+                    <?php  if($user->active == 1) {?>
+                        <a href="user.php" class="edt_btn"><i class="fa fa-edit"></i></a>
+                      <?php }else{ ?>
+                        <a href="#" class="not_active"><i class="fa fa-edit"></i></a>
+                      <?php } ?>
                     </td>
                   </tr>
                   <?php endforeach; } ?>                

@@ -13,7 +13,15 @@
         <li class="active">Dashboard</li>
       </ol>
     </section>
+    <?php
+      $url = "http://test.vaibhavnidhi.com/api/admin/leads_stats";
+      header('Content-type: application/json');
+      $data = file_get_contents($url);
+      $lead_data = json_decode($data);
 
+      if(isset($lead_data))
+      {
+    ?>
     <!-- Main content -->
     <section class="content">
       <!-- Small boxes (Stat box) -->
@@ -22,7 +30,7 @@
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h3>150</h3>
+              <h3><?php echo $lead_data[0]->total_leads; ?></h3>
 
               <p>Total Leads</p>
             </div>
@@ -36,7 +44,7 @@
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3>44</h3>
+              <h3><?php echo $lead_data[0]->active_leads; ?></h3>
 
               <p>Active Leads</p>
             </div>
@@ -51,7 +59,7 @@
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3>53<sup style="font-size: 20px">%</sup></h3>
+              <h3><?php echo $lead_data[0]->accepted_leads; ?></h3>
 
               <p>Accepted Leads</p>
             </div>
@@ -68,7 +76,7 @@
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              <h3>65</h3>
+              <h3><?php echo $lead_data[0]->declined_leads; ?></h3>
 
               <p>Declined Leads</p>
             </div>
@@ -80,6 +88,7 @@
         </div>
         <!-- ./col -->
       </div>
+      <?php } ?>
       <!-- /.row -->
       <!-- Main row -->
       <div class="row">
@@ -141,7 +150,6 @@
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                 </button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
               </div>
             </div>
             <div class="box-body">

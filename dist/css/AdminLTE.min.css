@@ -6626,3 +6626,8 @@ table.text-center th {
     color: #fff;
 }
 
+.not_active {
+    cursor: not-allowed;
+    opacity: 0.3;
+    color: #000;
+   }
