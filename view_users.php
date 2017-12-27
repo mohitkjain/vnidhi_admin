@@ -65,7 +65,12 @@
                                   echo 'Inactive';
                               }  ?>
                     </td>
-                    <td><a href="#" class="edt_btn"><i class="fa fa-edit"></i></a></td>
+                    <td>
+                    <?php if($user->active == 1) ?>
+                            <a href="#" class="edt_btn"><i class="fa fa-edit"></i></a>
+                    <?php else ?>
+                            <a href="#" class="edt_btn" disabled><i class="fa fa-edit"></i></a>
+                    </td>
                   </tr>
                   <?php endforeach; } ?>                
                 </tfoot>
