@@ -62,7 +62,7 @@
           </a>
 		  <ul class="treeview-menu">
             <li><a href="view_users.php"><i class="fa fa-circle-o"></i> View/Edit Users</a></li>
-            <li><a href="add_user.php"><i class="fa fa-circle-o"></i> Add User</a></li>
+            <li><a href="user.php"><i class="fa fa-circle-o"></i> Add User</a></li>
           </ul>
         </li>
 		<li class="treeview">
