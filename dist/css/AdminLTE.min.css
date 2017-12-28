@@ -2872,7 +2872,8 @@ a:focus {
 
 .callout h4 {
     margin-top: 0;
-    font-weight: 600
+    font-weight: 600;
+    margin-bottom: 2px;
 }
 
 .callout p:last-child {
@@ -2895,6 +2896,48 @@ a:focus {
 .callout.callout-info {
     border-color: #0097bc
 }
+
+.callout.callout-accepted {
+    color: #fff;
+    border-color: #00c853  ;
+    background-color: #17ed85 ;
+}
+.callout.callout-declined {
+    color: #fff;
+    border-color: #b70a2c ; 
+    background-color: #ec274d ;
+}
+.callout.callout-request {
+    color: #fff;
+    border-color: #d4b115 ;
+    background-color: #fdd835 ;
+}
+.callout.callout-followup {
+    color: #fff;
+    border-color: #0386c1 ;
+    background-color: #21aae7 ; 
+}
+.callout.callout-home {
+    color: #fff;
+    border-color: #c96116 ;
+    background-color: #f18435 ; 
+}
+.callout.callout-telecalling {
+    color: #fff;
+    border-color: #868585;
+    background-color: #a9a9a9; 
+}
+.callout.callout-directlead {
+    color: #fff;
+    border-color: #019587;
+    background-color: #13baab; 
+}
+.callout.callout-companylead {
+    color: #fff;
+    border-color: #663AB6 ;
+    background-color: #8458d6; 
+}
+
 
 .callout.callout-success {
     border-color: #00733e
@@ -6630,4 +6673,49 @@ table.text-center th {
     cursor: not-allowed;
     opacity: 0.3;
     color: #000;
-   }
+}
+.leads_table a {
+    font-weight: bold;
+    font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+}
+
+.date_people_section hr {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.date_people_section .box-header {
+    padding: 10px 10px 3px 10px;
+}
+
+.box_50 {
+    width: 50%;
+    float: left;
+}
+
+.scheme_accepted {
+    opacity: 0.3;
+}
+
+.box-comment .img-circle {
+    background: #dcdcdc;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    font-size: 15px;
+    color: #000;
+    font-weight: bold;
+    float: left;
+}
+
+.yellow_circle {
+    background: #f00 !important;
+    color: #fff !important;
+}
+
+.blue_circle {
+    background: rgb(111, 0, 255) !important;
+    color: #fff !important;
+}

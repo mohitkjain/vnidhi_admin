@@ -29,7 +29,7 @@
           <div class="box">            
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="example1" class="table table-bordered table-striped">
+              <table id="example1" class="table table-bordered table-striped leads_table">
                 <thead>
                   <tr>
                     <th>Lead ID</th>
@@ -43,7 +43,7 @@
                 <tbody>
                   <tr>
                     <?php foreach($declined_leads_data as $lead_data):?>
-                      <td><a href="leads_details.php"><?php echo $lead_data->lead_id; ?></a></td>
+                      <td><?php echo '<a href="leads_details.php?lead_id=' .$lead_data->lead_id.'">'. $lead_data->lead_id.'</a>'; ?></td>
                       <td><?php echo $lead_data->c_name; ?></td>
                       <td><?php echo $lead_data->creator_name; ?></td>
                       <td><?php echo $lead_data->assignee_name; ?></td>
