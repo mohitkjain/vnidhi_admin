@@ -2,6 +2,16 @@
   <!-- Left side column. contains the logo and sidebar -->
 <?php require 'include/sidebar.php'; ?>
   <!-- Content Wrapper. Contains page content -->
+  <?php
+      $url = "http://test.vaibhavnidhi.com/api/admin/get_targets";
+      header('Content-type: application/json');
+      $data = file_get_contents($url);
+      $targets_data = json_decode($data);
+
+      if(isset($targets_data))
+      {
+        $user_name; $position; $current_target; $current_achieved; $pre_target; $pre_achieved; 
+    ?>
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -33,16 +43,26 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                  <td>Mohit Kumar Jain</td>
-                  <td>Admin
-                  </td>
-                  <td>10,000</td>
-                  <td>5,000</td>
-                  <td>5,000</td>
-                  <td>4,000</td>
-                </tr>
-                
+                <?php foreach($targets_data as $key=>$target_data):?>
+                  <tr>
+                    <td><?php echo $target_data->user_name; ?></td>
+                    <td><?php echo $target_data->position; ?></td>
+                    <td><?php echo $target_data->current_month_target; ?></td>
+                    <td><?php echo $target_data->current_month_achieved; ?></td>
+                    <td><?php echo $target_data->pre_month_target; ?></td>
+                    <td><?php echo $target_data->pre_month_achieved; ?></td>
+                  </tr>
+                  <?php endforeach; } ?>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <th>User Name</th>
+                    <th>Position</th>
+                    <th>Current Month Target</th>
+                    <th>Current Month Achieved</th>
+                    <th>Previous Month Target</th>
+                    <th>Previous Month Achieved</th>
+                  </tr>
                 </tfoot>
               </table>
             </div>

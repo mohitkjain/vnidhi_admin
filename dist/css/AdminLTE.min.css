@@ -6710,12 +6710,107 @@ table.text-center th {
     float: left;
 }
 
-.yellow_circle {
-    background: #f00 !important;
+.a_circle {
+    background: #8bc34a !important;
     color: #fff !important;
 }
-
-.blue_circle {
-    background: rgb(111, 0, 255) !important;
+.b_circle {
+    background: #ffeb3b !important;
+    color: #fff !important;
+}
+.c_circle {
+    background: #ffc107  !important;
+    color: #fff !important;
+}
+.d_circle {
+    background: #ff5722  !important;
+    color: #fff !important;
+}
+.e_circle {
+    background: #e91e63  !important;
+    color: #fff !important;
+}
+.f_circle {
+    background: #259b24  !important;
+    color: #fff !important;
+}
+.g_circle {
+    background: #cddc39 !important;
+    color: #fff !important;
+}
+.h_circle {
+    background: #ff9800  !important;
+    color: #fff !important;
+}
+.i_circle {
+    background: #e51c23  !important;
+    color: #fff !important;
+}
+.j_circle {
+    background: #9c27b0  !important;
+    color: #fff !important;
+}
+.k_circle {
+    background: #3F51B5  !important;
+    color: #fff !important;
+}
+.l_circle {
+    background: #03a9f4  !important;
+    color: #fff !important;
+}
+.m_circle {
+    background: #00bcd4  !important;
+    color: #fff !important;
+}
+.n_circle {
+    background: #9e9e9e  !important;
+    color: #fff !important;
+}
+.o_circle {
+    background: #607d8b  !important;
+    color: #fff !important;
+}
+.p_circle {
+    background: #673ab7  !important;
+    color: #fff !important;
+}
+.q_circle {
+    background: #5677fc  !important;
+    color: #fff !important;
+}
+.r_circle {
+    background: #009688  !important;
+    color: #fff !important;
+}
+.s_circle {
+    background: #795548  !important;
+    color: #fff !important;
+}
+.t_circle {
+    background: #880e4f  !important;
+    color: #fff !important;
+}
+.u_circle {
+    background: #283593  !important;
+    color: #fff !important;
+}
+.v_circle {
+    background: #8d6e63  !important;
+    color: #fff !important;
+}
+.w_circle {
+    background: #f57f17  !important;
+    color: #fff !important;
+}
+.x_circle {
+    background: #558b2f  !important;
+    color: #fff !important;
+}
+.y_circle {
+    background: #827717  !important;
+    color: #fff !important;
+}
+.z_circle {
+    background: #00695c  !important;
     color: #fff !important;
 }

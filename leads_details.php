@@ -273,8 +273,13 @@
             <div class="box-body box-footer box-comments">
             <?php foreach($comments_data as $comment_data):?>
               <div class="box-comment">
-                <!-- User image -->               
-                <span class="img-circle yellow_circle"><?php echo substr($comment_data->commentator_name, 0, 1); ?></span>
+                <!-- User image -->    
+                <?php $letter = substr($comment_data->commentator_name, 0, 1); 
+                    $letter_low = strtolower($letter);
+                    $letter = strtoupper($letter);
+                    $css_class = $letter_low.'_circle';
+                ?>           
+                <span class="img-circle <?php echo $css_class?>"><?php echo $letter; ?></span>
                 <div class="comment-text">
                       <span class="username">
                       <?php echo $comment_data->commentator_name; ?>
