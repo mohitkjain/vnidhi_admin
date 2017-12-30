@@ -79,7 +79,7 @@
               </div>
               <!-- /.box-body -->
 			<div class="form-group">
-				<input class="btn btn-success" type="submit" name="form_post" value="Submit"> 
+				<input class="btn btn-success" type="submit" id = "btn_submit" name="form_post" value="Submit"> 
 				<button class="btn btn-default pull-right"><a href="#">Cancel</a></button>
 			</div>
   
@@ -97,6 +97,26 @@
     <!-- /.content -->
   </div>
    <!-- /.content-wrapper -->
+   <div class="modal fade" id="modal-default">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Success</h4>
+              </div>
+              <div class="modal-body">
+                <p>Target is successfully Set</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal" onclick="window.location='view_targets.php';">OK</button>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
       <b>Version</b> 2.4.0
@@ -107,8 +127,10 @@
 </div>
 <!-- ./wrapper -->
 <script>
-  $(function () {
-   $('#user').change(function(){
+  $(function () 
+  {
+    $('#user').change(function()
+    {
      var id = $(this).val();
       var targets = JSON.parse('<?php echo json_encode($target_users_data); ?>');
       $('#user_type').val(targets[id].user_type);
@@ -116,7 +138,43 @@
       $('#pre_achieved').val(targets[id].pre_achieved);
       $('#current_target').val(targets[id].current_target);
    })
-  })
+  });
+
+  $('#btn_submit').on('click', function (e) 
+  {
+	 	e.preventDefault();
+	 	var user_id=$('#user').val();
+	 	var current_target=$('#current_target').val();
+    var numericReg = /^-?(?:\d+|\d{1,3}(?:,\d{3})+)(?:(\.|,)\d+)?$/;
+    if(!numericReg.test(current_target)) 
+    {
+        $('#current_target').after('<span class="error error-keyup-1">Numeric characters only.</span>');
+    }
+    else
+    {
+      current_target=parseInt(current_target.replace(/,/g , ''));
+      if(current_target=='')
+      {
+        alert('Please Set Target for this month');
+      }
+      else
+      {
+          var data = {
+                        user_id: user_id,
+                        target_amount: current_target
+                    };
+                
+              $.ajax({
+                type: 'post',
+                url: 'http://test.vaibhavnidhi.com/api/admin/set_target/current_month',
+                data: data,
+                success: function (data) {   
+                  $('#modal-default').modal('show');
+                }//end of success
+              });//end of ajax
+      }
+    }
+	 });
 </script>
 </body>
 </html>

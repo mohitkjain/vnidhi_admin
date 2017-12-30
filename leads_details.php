@@ -13,12 +13,11 @@
     header('Content-type: application/json');
     $data = file_get_contents($url);
     $leads_data = json_decode($data);
-
     $lead_type; $c_name; $c_address; $c_mobile; $c_email; $description;
     $status; $assignee_name; $creator_name; $converted; $date_created;
     $scheme_name; $duration; $amount; $aadhar_no; $closing_date;
 
-    if(isset($leads_data))
+    if(!empty($leads_data->lead_id))
     {
       $lead_type = $leads_data->lead_type;
       $c_name = $leads_data->c_name;
@@ -36,6 +35,10 @@
       $aadhar_no = $leads_data->aadhar_no;
       $closing_date = $leads_data->closing_date;
 
+    }
+    else
+    {
+        echo '<script> window.location = "error.php"; </script>';
     }
   
   ?>
@@ -312,22 +315,6 @@
   <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
-
-<!-- jQuery 3 -->
-<script src="../../bower_components/jquery/dist/jquery.min.js"></script>
-<!-- Bootstrap 3.3.7 -->
-<script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- DataTables -->
-<script src="../../bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="../../bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-<!-- SlimScroll -->
-<script src="../../bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-<!-- FastClick -->
-<script src="../../bower_components/fastclick/lib/fastclick.js"></script>
-<!-- AdminLTE App -->
-<script src="../../dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="../../dist/js/demo.js"></script>
 <!-- page script -->
 <script>
   $(function () {

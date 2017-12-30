@@ -14,6 +14,9 @@
     </section>
 
     <?php
+      session_start();
+      unset($_SESSION['reset_id']);
+      unset($_SESSION['reset_name']);      
       $url = "http://test.vaibhavnidhi.com/api/users";
       header('Content-type: application/json');
       $data = file_get_contents($url);
@@ -49,8 +52,8 @@
                   <?php foreach($user_data as $user):?>
                   <tr>
                     <td><?php echo $user->user_id;  ?></td>
-                    <td><?php echo $user->fname;  ?></td>
-                    <td><?php echo $user->lname;  ?></td>
+                    <td id="fname_<?php echo $user->user_id;  ?>"><?php echo $user->fname;  ?></td>
+                    <td id="lname_<?php echo $user->user_id;  ?>"><?php echo $user->lname;  ?></td>
                     <td><?php echo $user->loginid;  ?></td>
                     <td><?php echo $user->usertype;  ?></td>
                     <td><?php echo $user->empid;  ?></td>
@@ -67,9 +70,13 @@
                     </td>
                     <td>
                     <?php  if($user->active == 1) {?>
-                        <a href="user.php" class="edt_btn"><i class="fa fa-edit"></i></a>
+                        <a href="user.php" class="edit_user_btn" data-toggle="tooltip" title="Edit"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;
+                        <a href="#" class="reset_pass_btn" id="reset_<?php echo $user->user_id;  ?>" data-toggle="tooltip" title="Reset Password"><i class="fa fa-refresh"></i></a>&nbsp;&nbsp;
+                        <a href="#" class="deactive_user_btn" data-toggle="tooltip" title="Deactivate User"><i class="fa  fa-remove"></i></a>
                       <?php }else{ ?>
-                        <a href="#" class="not_active"><i class="fa fa-edit"></i></a>
+                        <a href="#" class="not_active"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;
+                        <a href="#" class="not_active"><i class="fa fa-refresh"></i></a>&nbsp;&nbsp;
+                        <a href="#" class="not_active"><i class="fa  fa-remove"></i></a>
                       <?php } ?>
                     </td>
                   </tr>
@@ -121,8 +128,24 @@
       'ordering'    : true,
       'info'        : true,
       'autoWidth'   : false
+    });
+
+    $('.reset_pass_btn').click(function()
+    {
+      var id=$(this).attr('id').split('_')[1];
+      var name = $('#fname_'+id).html() + " " + $('#lname_'+id).html();
+      $.ajax({
+        url : "ajax.php",
+        type : "POST",
+        data : {id : id, name : name, action : "reset_session"},
+        success : function(d)
+        {
+          //alert(data);
+          window.location = "reset_password.php";
+        }
+      })
     })
-  })
+  });
 </script>
 </body>
 </html>

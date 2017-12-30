@@ -1523,7 +1523,7 @@ a:focus {
     color: #f39c12
 }
 
-.form-group.has-error label {
+.form-group.has-error label, .error {
     color: #dd4b39
 }
 
@@ -6813,4 +6813,12 @@ table.text-center th {
 .z_circle {
     background: #00695c  !important;
     color: #fff !important;
+}
+
+.deactive_user_btn{
+    color : red;
+}
+
+.reset_pass_btn{
+    color : orange;
 }
