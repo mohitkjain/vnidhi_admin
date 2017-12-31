@@ -51,11 +51,12 @@
                 <tbody>
                   <?php foreach($user_data as $user):?>
                   <tr>
+                    <input type="hidden" id="tl_id_<?php echo $user->user_id; ?>" value="<?php echo $user->tl_id;  ?>">
                     <td><?php echo $user->user_id;  ?></td>
                     <td id="fname_<?php echo $user->user_id;  ?>"><?php echo $user->fname;  ?></td>
                     <td id="lname_<?php echo $user->user_id;  ?>"><?php echo $user->lname;  ?></td>
                     <td><?php echo $user->loginid;  ?></td>
-                    <td><?php echo $user->usertype;  ?></td>
+                    <td id="usertype_<?php echo $user->user_id;  ?>"><?php echo $user->usertype;  ?></td>
                     <td><?php echo $user->empid;  ?></td>
                     <td><?php echo $user->position;  ?></td>
                     <td><?php echo $user->tl_name;  ?></td>
@@ -70,9 +71,9 @@
                     </td>
                     <td>
                     <?php  if($user->active == 1) {?>
-                        <a href="user.php" class="edit_user_btn" data-toggle="tooltip" title="Edit"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;
+                        <a href="edit_user.php" class="edit_user_btn" data-toggle="tooltip" title="Edit"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;
                         <a href="#" class="reset_pass_btn" id="reset_<?php echo $user->user_id;  ?>" data-toggle="tooltip" title="Reset Password"><i class="fa fa-refresh"></i></a>&nbsp;&nbsp;
-                        <a href="#" class="deactive_user_btn" data-toggle="tooltip" title="Deactivate User"><i class="fa  fa-remove"></i></a>
+                        <a href="#" class="deactive_user_btn" id="deactivate_<?php echo $user->user_id;  ?>" data-toggle="tooltip" title="Deactivate User"><i class="fa  fa-remove"></i></a>
                       <?php }else{ ?>
                         <a href="#" class="not_active"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;
                         <a href="#" class="not_active"><i class="fa fa-refresh"></i></a>&nbsp;&nbsp;
@@ -110,6 +111,47 @@
     <!-- /.content -->
   </div>
    <!-- /.content-wrapper -->
+  <div class="modal fade" id="modal-default">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Success</h4>
+        </div>
+        <div class="modal-body">
+          <p>User is successfully Deactivate</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal" onclick="window.location='view_users.php';">OK</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
+
+  <div class="modal modal-danger fade" id="modal_deactivate">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Deactivate User</h4>
+        </div>
+        <div class="modal-body">
+          <p>If you deactive this user then you can\'t edit this user and all records will be delete related to this user. Are you sure you want to deactive this?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">No</button>
+          <button type="button" id ="btn_confirm_deactivate" class="btn btn-outline">Yes</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
       <b>Version</b> 2.4.0
@@ -129,9 +171,10 @@
       'info'        : true,
       'autoWidth'   : false
     });
-
-    $('.reset_pass_btn').click(function()
-    {
+  });
+    
+  $('.reset_pass_btn').click(function()
+  {
       var id=$(this).attr('id').split('_')[1];
       var name = $('#fname_'+id).html() + " " + $('#lname_'+id).html();
       $.ajax({
@@ -144,8 +187,42 @@
           window.location = "reset_password.php";
         }
       })
-    })
   });
+
+  $(".deactive_user_btn").click(function () 
+  {
+    var user_id=$(this).attr('id').split('_')[1];
+    var usertype = $('#usertype_'+user_id).html();
+    var tl_id = $('#tl_id_'+user_id).val();
+    tl_id = parseInt(tl_id);
+    user_id = parseInt(user_id);   
+    
+    var data = {
+                  user_id: user_id,
+                  usertype: usertype,
+                  tl_id: tl_id
+                };
+    console.log(data);
+    $('#modal_deactivate').modal({
+      backdrop: 'static',
+      keyboard: false
+    })
+    .one('click', '#btn_confirm_deactivate', function(e) 
+    {
+      $('#modal_deactivate').modal('hide');
+      $.ajax({
+              type: 'post',
+              url: 'http://test.vaibhavnidhi.com/api/admin/deactivate_user',
+              data: data,
+              success: function (data) 
+              {   
+                $('#modal-default').modal('show');
+              }//end of success
+          });//end of ajax
+    });
+    
+    });
+
 </script>
 </body>
 </html>

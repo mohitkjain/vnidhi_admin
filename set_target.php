@@ -97,26 +97,25 @@
     <!-- /.content -->
   </div>
    <!-- /.content-wrapper -->
-   <div class="modal fade" id="modal-default">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span></button>
+  <div class="modal fade" id="modal-default">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">Success</h4>
-              </div>
-              <div class="modal-body">
-                <p>Target is successfully Set</p>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default pull-left" data-dismiss="modal" onclick="window.location='view_targets.php';">OK</button>
-              </div>
-            </div>
-            <!-- /.modal-content -->
-          </div>
-          <!-- /.modal-dialog -->
+        </div>
+        <div class="modal-body">
+          <p>Target is successfully Set</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal" onclick="window.location='view_targets.php';">OK</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
     </div>
-    <!-- /.modal -->
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
       <b>Version</b> 2.4.0
