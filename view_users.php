@@ -55,11 +55,11 @@
                     <td><?php echo $user->user_id;  ?></td>
                     <td id="fname_<?php echo $user->user_id;  ?>"><?php echo $user->fname;  ?></td>
                     <td id="lname_<?php echo $user->user_id;  ?>"><?php echo $user->lname;  ?></td>
-                    <td><?php echo $user->loginid;  ?></td>
+                    <td id="login_<?php echo $user->user_id;  ?>"><?php echo $user->loginid;  ?></td>
                     <td id="usertype_<?php echo $user->user_id;  ?>"><?php echo $user->usertype;  ?></td>
-                    <td><?php echo $user->empid;  ?></td>
-                    <td><?php echo $user->position;  ?></td>
-                    <td><?php echo $user->tl_name;  ?></td>
+                    <td id="empid_<?php echo $user->user_id;  ?>"><?php echo $user->empid;  ?></td>
+                    <td id="position_<?php echo $user->user_id; ?>"><?php echo $user->position;  ?></td>
+                    <td id="tlname_<?php echo $user->user_id;  ?>"><?php echo $user->tl_name;  ?></td>
                     <td><?php if($user->active == 1)
                               {
                                   echo 'Active';
@@ -71,9 +71,9 @@
                     </td>
                     <td>
                     <?php  if($user->active == 1) {?>
-                        <a href="edit_user.php" class="edit_user_btn" data-toggle="tooltip" title="Edit"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;
-                        <a href="#" class="reset_pass_btn" id="reset_<?php echo $user->user_id;  ?>" data-toggle="tooltip" title="Reset Password"><i class="fa fa-refresh"></i></a>&nbsp;&nbsp;
-                        <a href="#" class="deactive_user_btn" id="deactivate_<?php echo $user->user_id;  ?>" data-toggle="tooltip" title="Deactivate User"><i class="fa  fa-remove"></i></a>
+                        <a href="#" class="edit_user_btn" id="edit_<?php echo $user->user_id; ?>" data-toggle="tooltip" title="Edit"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;
+                        <a href="#" class="reset_pass_btn" id="reset_<?php echo $user->user_id; ?>" data-toggle="tooltip" title="Reset Password"><i class="fa fa-refresh"></i></a>&nbsp;&nbsp;
+                        <a href="#" class="deactive_user_btn" id="deactivate_<?php echo $user->user_id; ?>" data-toggle="tooltip" title="Deactivate User"><i class="fa  fa-remove"></i></a>
                       <?php }else{ ?>
                         <a href="#" class="not_active"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;
                         <a href="#" class="not_active"><i class="fa fa-refresh"></i></a>&nbsp;&nbsp;
@@ -185,6 +185,44 @@
         {
           //alert(data);
           window.location = "reset_password.php";
+        }
+      })
+  });
+
+  $('.edit_user_btn').click(function()
+  {
+      var user_id=$(this).attr('id').split('_')[1];
+      var fname=$('#fname_'+user_id).html();
+      var lname=$('#lname_'+user_id).html();
+      var login=$('#login_'+user_id).html();
+      var usertype=$('#usertype_'+user_id).html();
+      var empid=$('#empid_'+user_id).html();
+      var position=$('#position_'+user_id).html();
+      var tl_id=$('#tl_id_'+user_id).html();
+      var tl_name=$('#tlname_'+user_id).html();
+
+      var data = 
+      {
+        user_id: user_id,
+        fname: fname,
+        lname: lname,
+        login: login,
+        usertype: usertype,
+        empid: empid,
+        position: position,
+        tl_id: tl_id,
+        tl_name:tl_name,
+        action : "edit_session"
+      }
+
+      $.ajax({
+        url : "ajax.php",
+        type : "POST",
+        data : data,
+        success : function(d)
+        {
+          //alert(data);
+          window.location = "edit_user.php";
         }
       })
   });
