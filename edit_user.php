@@ -20,7 +20,7 @@
         }
       }
     } 
-    $tl_id = $_SESSION['edit_tl_id'];
+     $tl_id = $_SESSION['edit_tl_id'];
 ?>
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -45,7 +45,7 @@
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
-                <form role="form">
+                <form role="form" id="user_form" method="post">
                   <div class="box-body">
                     <div class="form-group">
                       <label for="user_id">User ID:</label>
@@ -90,7 +90,7 @@
                   </div>
                   <!-- /.box-body -->
                   <div class="form-group">
-                    <input class="btn btn-success" type="submit" value="Submit"> 
+                    <input class="btn btn-success" type="submit" id = "btn_submit" name="form_post" value="Submit"> 
                     <button class="btn btn-default pull-right"><a href="view_users.php">Cancel</a></button>
                   </div>      
                 </form>
@@ -106,6 +106,27 @@
     <!-- /.content -->
   </div>
    <!-- /.content-wrapper -->
+
+   <div class="modal fade" id="modal-default">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" onclick="window.location='view_users.php';" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Success</h4>
+        </div>
+        <div class="modal-body">
+          <p> You have added successfully User.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal" onclick="window.location='view_users.php';">OK</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
+
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
       <b>Version</b> 2.4.0
@@ -116,6 +137,17 @@
 </div>
 <!-- ./wrapper -->
 <script>
+
+(function($)
+{
+    $.fn.setCursorToTextEnd = function() 
+    {
+        $initialVal = this.val();
+        this.val($initialVal + ' ');
+        this.val($initialVal);
+    };
+})(jQuery);
+
   $(function () 
   {
     $('#usertype').change(function()
@@ -152,6 +184,79 @@
       }
     $("select#teamleader").html(options);
   });  
+
+$(document).ready(function () 
+{
+    $("#firstname").focus();
+    $("#firstname").setCursorToTextEnd();
+    $("#firstname, #lastname, #login_id, #position" ).blur(function()
+    {
+      if($(this).val().length == 0)
+      {
+        $(this).next('#span_field_error').remove();
+        $(this).after('<span id="span_field_error" class="error error-keyup-1">This field is required.</span>');
+        $(this).focus();
+      } 
+      else
+       {
+        $(this).next('#span_field_error').remove();
+      }
+    });
+});
+
+$('#btn_submit').on('click', function (e) 
+{
+	 	e.preventDefault();
+    var user_id=$('#user_id').val();
+	 	var fname=$('#firstname').val();
+    var lname=$('#lastname').val();
+    var login=$('#login_id').val();
+    var usertype=$('#usertype').val();
+    var position=$('#position').val();
+    var empid=$('#employee_id').val();
+    var tl_id=$('#teamleader').val();
+    if(usertype != null)
+    {
+      var numericReg = /^([1-9][0-9]*)$/;
+      if(!numericReg.test(empid))
+      {
+        $('#span_usertype_error').remove();
+          $('#span_empid_error').remove();
+          $('#employee_id').after('<span id="span_empid_error" class="error error-keyup-1">Numeric characters only.</span>');
+      }
+      else
+      {
+        $('#span_usertype_error').remove();
+        $('#span_empid_error').remove();
+        var data = 
+        {
+          user_id: user_id,
+          fname: fname,
+          lname: lname,
+          login: login,          
+          usertype: usertype,
+          position: position,
+          empid: empid,
+          tl_id: tl_id
+        };              
+        $.ajax(
+        {
+          type: 'post',
+          url: 'http://test.vaibhavnidhi.com/api/admin/users/user_edit',
+          data: data,
+          success: function (data) 
+          {   
+            $('#modal-default').modal('show');
+          }//end of success
+        });//end of ajax      
+      }
+    }
+    else
+    {
+      $('#span_usertype_error').remove();
+      $('#usertype').after('<span id="span_usertype_error" class="error error-keyup-1">Please Select Usertype</span>');
+    }
+});
  
 </script>
 </body>

@@ -15,8 +15,25 @@
 
     <?php
       session_start();
-      unset($_SESSION['reset_id']);
-      unset($_SESSION['reset_name']);      
+      if(isset($_SESSION['reset_id']))
+      {
+        unset($_SESSION['reset_id']);
+        unset($_SESSION['reset_name']); 
+      }
+
+      if(isset($_SESSION['edit_user_id']))
+      { 
+        unset($_SESSION['edit_user_id']);
+        unset($_SESSION['edit_fname']);
+        unset($_SESSION['edit_lname']);
+        unset($_SESSION['edit_login']);
+        unset($_SESSION['edit_usertype']);
+        unset($_SESSION['edit_empid']);
+        unset($_SESSION['edit_position']);
+        unset($_SESSION['edit_tl_id']);
+        unset($_SESSION['edit_tl_name']);
+      }
+           
       $url = "http://test.vaibhavnidhi.com/api/users";
       header('Content-type: application/json');
       $data = file_get_contents($url);
@@ -115,7 +132,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span></button>
+          <button type="button" class="close" onclick="window.location='view_users.php';" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">Success</h4>
         </div>
         <div class="modal-body">
@@ -198,7 +215,7 @@
       var usertype=$('#usertype_'+user_id).html();
       var empid=$('#empid_'+user_id).html();
       var position=$('#position_'+user_id).html();
-      var tl_id=$('#tl_id_'+user_id).html();
+      var tl_id=$('#tl_id_'+user_id).val();
       var tl_name=$('#tlname_'+user_id).html();
 
       var data = 
@@ -240,7 +257,6 @@
                   usertype: usertype,
                   tl_id: tl_id
                 };
-    console.log(data);
     $('#modal_deactivate').modal({
       backdrop: 'static',
       keyboard: false
@@ -257,9 +273,8 @@
                 $('#modal-default').modal('show');
               }//end of success
           });//end of ajax
-    });
-    
-    });
+    });    
+  });
 
 </script>
 </body>

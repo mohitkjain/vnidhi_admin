@@ -1,6 +1,31 @@
 <?php require 'include/header.php'; ?>
   <!-- Left side column. contains the logo and sidebar -->
 <?php require 'include/sidebar.php'; ?>
+
+<?php
+
+if($_SERVER['REQUEST_METHOD']=='GET')
+{
+  //getting the request values 
+  $user_id = trim($_REQUEST['id']);
+  $user_id = base64_decode($user_id);
+  list($val, $user_id, $user_type) = preg_split('[_]', $user_id);
+  //preg_match('/_(\d+)_/', $user_id, $matches);
+  //$user_id = (int) $matches[1];
+
+  $yearArray = range(2017, 2100);
+  $monthArray = range(1, 12);
+
+  // set the month array
+  $formattedMonthArray = array("1" => "January", "2" => "February", "3" => "March", "4" => "April",
+    "5" => "May", "6" => "June", "7" => "July", "8" => "August",
+    "9" => "September", "10" => "October", "11" => "November", "12" => "December",
+  );
+  $current_month = date("m");
+  $current_year = date("Y");
+}
+
+?>
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -32,13 +57,15 @@
               <div class="form-group">
                 <label>Month:*</label>
                 <select class="form-control select2" style="width: 100%;">
-                  <option selected="selected">January</option>
-                  <option>Feburary</option>
-                  <option>March</option>
-                  <option>April</option>
-                  <option>May</option>
-                  <option>June</option>
-                  <option>July</option>
+                  <option selected="selected" disabled>Select Month </option>
+                  <?php
+                    foreach ($monthArray as $month) 
+                    {                    
+                  ?>
+                      <option value="<?php echo $month;?>" ><?php echo $formattedMonthArray[$month];?></option>
+                  <?php 
+                    }
+                   ?>
                 </select>
               </div>
               <!-- /.form-group -->
@@ -47,15 +74,16 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label>Year:*</label>
-                <select class="form-control select2" data-placeholder="Select a Month"
-                        style="width: 100%;">
-                  <option>2017</option>
-                  <option>2018</option>
-                  <option>2019</option>
-                  <option>2020</option>
-                  <option>2021</option>
-                  <option>2022</option>
-                  <option>2023</option>
+                <select class="form-control select2" data-placeholder="Select a Month" style="width: 100%;">
+                  <option selected="selected">Select Year</option>
+                  <?php
+                    foreach ($yearArray as $year) 
+                    {                    
+                  ?>
+                      <option value="<?php echo $year;?>" ><?php echo $year;?></option>
+                  <?php 
+                    }
+                   ?>
                 </select>
               </div>
             </div>
@@ -169,22 +197,6 @@
   <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
-
-<!-- jQuery 3 -->
-<script src="../../bower_components/jquery/dist/jquery.min.js"></script>
-<!-- Bootstrap 3.3.7 -->
-<script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- DataTables -->
-<script src="../../bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="../../bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-<!-- SlimScroll -->
-<script src="../../bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-<!-- FastClick -->
-<script src="../../bower_components/fastclick/lib/fastclick.js"></script>
-<!-- AdminLTE App -->
-<script src="../../dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="../../dist/js/demo.js"></script>
 <!-- page script -->
 <script>
   $(function () {
