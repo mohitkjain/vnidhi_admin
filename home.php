@@ -33,7 +33,6 @@
           <div class="small-box bg-aqua">
             <div class="inner">
               <h3><?php echo $lead_data->total_leads; ?></h3>
-
               <p>Total Leads</p>
             </div>
             <div class="icon">
@@ -42,16 +41,15 @@
             <a href="total_leads.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
-		   <div class="col-lg-3 col-xs-6">
+		    <div class="col-lg-3 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
               <h3><?php echo $active_leads =  $lead_data->active_leads; ?></h3>
-
               <p>Active Leads</p>
             </div>
             <div class="icon">
-             <div class="ion dashboard_icon"><img src="dist/img/active_icon.png" alt=""></div>
+              <div class="ion dashboard_icon"><img src="dist/img/active_icon.png" alt=""></div>
             </div>
             <a href="active_leads.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
@@ -62,7 +60,6 @@
           <div class="small-box bg-green">
             <div class="inner">
               <h3><?php echo $accepted_leads = $lead_data->accepted_leads; ?></h3>
-
               <p>Accepted Leads</p>
             </div>
             <div class="icon">
@@ -72,14 +69,11 @@
           </div>
         </div>
         <!-- ./col -->
-       
-        <!-- ./col -->
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
               <h3><?php echo $declined_leads = $lead_data->declined_leads; ?></h3>
-
               <p>Declined Leads</p>
             </div>
             <div class="icon">
@@ -92,87 +86,73 @@
       </div>
       <?php } ?>
       <!-- /.row -->
-      <!-- Main row -->
       <div class="row">
-       
-        <!-- /.Left col -->
-		  
-	  <!-- Main content -->
-    <section class="content">
-      <div class="row">
-        <div class="col-md-6 Control connectedSortable">
-			 <div class="box box-solid bg-green-gradient calendar_box">
-				<div class="box-header">
-				  <i class="fa fa-calendar"></i>
+        <div class="col-md-6">
+          <div class="box box-solid bg-green-gradient calendar_box">
+              <div class="box-header">
+                <i class="fa fa-calendar"></i>
+                <h3 class="box-title">Calendar</h3>
+              </div>
+              <!-- /.box-header -->
+              <div class="box-body no-padding">
+                <!--The calendar -->
+                <div id="calendar" style="width: 100%"></div>
+              </div>
+          </div>
+          <?php
+              $url = "http://test.vaibhavnidhi.com/api/admin/employee_teams_stats";
+              header('Content-type: application/json');
+              $data = file_get_contents($url);
+              $employee_team_data = json_decode($data);
 
-				  <h3 class="box-title">Calendar</h3>
-				  <!-- tools box -->
-
-				  <!-- /. tools -->
-				</div>
-				<!-- /.box-header -->
-				<div class="box-body no-padding">
-				  <!--The calendar -->
-				  <div id="calendar" style="width: 100%"></div>
-				</div>
-
-        </div>
-      <?php
-      $url = "http://test.vaibhavnidhi.com/api/admin/employee_teams_stats";
-      header('Content-type: application/json');
-      $data = file_get_contents($url);
-      $employee_team_data = json_decode($data);
-
-      if(isset($employee_team_data))
-      {
-    ?>
-			<div class="row">
-				<div class="col-md-6">
-					<div class="info-box bg-yellow">
-						<span class="info-box-icon"><i class="fa fa-user" aria-hidden="true"></i></span>
-						<div class="info-box-content">
-						  <span class="info-box-text">Total Employees</span>
-						  <span class="info-box-number"><?php echo $employee_team_data->total_employees; ?></span>
-						</div>
-						<!-- /.info-box-content -->
-					</div>          
-				</div>
-				<div class="col-md-6">
-					<!-- /.info-box -->
-				  <div class="info-box bg-green">
-					  <span class="info-box-icon"><i class="fa fa-users" aria-hidden="true"></i></span>
-					  <div class="info-box-content">
-					    <span class="info-box-text">Total Teams</span>
-					    <span class="info-box-number"><?php echo $employee_team_data->total_teams; ?></span>
-					  </div>
-					<!-- /.info-box-content -->
-				  </div>
-				</div>
-      </div>
-      <?php } ?>
-      </div>
-		<div class="col-md-6">
-			<!-- DONUT CHART -->
-          <div class="box box-danger">
-            <div class="box-header with-border">
-              <h3 class="box-title">Donut Chart</h3>
-
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
+              if(isset($employee_team_data))
+              {
+          ?>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="info-box bg-yellow">
+                <span class="info-box-icon"><i class="fa fa-user" aria-hidden="true"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text">Total Employees</span>
+                  <span class="info-box-number"><?php echo $employee_team_data->total_employees; ?></span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>          
+            </div>
+            <div class="col-md-6">
+              <!-- /.info-box -->
+              <div class="info-box bg-green">
+                <span class="info-box-icon"><i class="fa fa-users" aria-hidden="true"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text">Total Teams</span>
+                  <span class="info-box-number"><?php echo $employee_team_data->total_teams; ?></span>
+                </div>
+              <!-- /.info-box-content -->
               </div>
             </div>
-            <div class="box-body">
-              <canvas id="pieChart" style="height:250px"></canvas>
-            </div>
-            <!-- /.box-body -->
           </div>
-          <!-- /.box -->
-		</div>
-	   </div>
-		<div class="row">
-        	<div class="col-md-12">
-				 <div class="box">
+          <?php } ?>
+        </div>
+		    <div class="col-md-6">
+          <!-- DONUT CHART -->
+          <div class="box box-danger">
+              <div class="box-header with-border">
+                <h3 class="box-title">Donut Chart</h3>
+                <div class="box-tools pull-right">
+                  <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="box-body">
+                <canvas id="pieChart" style="height:250px"></canvas>
+              </div>
+              <!-- /.box-body -->
+          </div>
+		    </div>
+	    </div>
+		  <div class="row">
+        <div class="col-md-12">
+				  <div class="box">
             <div class="box-header">
               <h3 class="box-title">Data Table With Full Features</h3>
             </div>
@@ -611,12 +591,6 @@
             <!-- /.box-body -->
           </div>
 			</div>
-		</div>
-	</section>  
-		
-      </div>
-      <!-- /.row (main row) -->
-
     </section>
     <!-- /.content -->
   </div>
@@ -628,10 +602,6 @@
 	  <span>Made by <a href="https://www.techradius.net/" target="_blank">Techradius Hitech Pvt. Ltd.</a> All Rights Reserved. A part of   <a href="http://www.vaibhv.com/" target="_blank">Vaibhav Group</a>.</span>
   </footer>
 </div>
-<!-- ./wrapper -->
-
-<!-- page script -->
-
 <script>
   $(function () {
     /* ChartJS
@@ -707,8 +677,6 @@ $(function () {
       'autoWidth'   : false
     })
   })
-</script>
-	
-	
+</script>	
 </body>
 </html>
