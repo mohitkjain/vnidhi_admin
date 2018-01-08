@@ -9,46 +9,11 @@ $(document).ready(function(){
     var spliturl=url.split("/");
     var l=spliturl.length;
     var page=spliturl[l-1].split(".")[0];
-    if(page) //not to add in case of index
-    {console.log($('.'+page));//selecting .admin class
-    if(page=='home')
-     $('.home').addClass('active');
-    else if(page=='rd')
-     $('.rd').addClass('active');
-    else if(page=='target')
-     $('.target').addClass('active');
-    }
 
-
-    $(document).on('click', '.target',function(e){
-      e.preventDefault();
-      window.location.href='target.html';
-    });
-
-    $(document).on('click', '.rd',function(e){
-      e.preventDefault();
-      window.location.href='rd.html';
-    });
-
-    $(document).on('click', '.admin',function(e){
-      e.preventDefault();
-      window.location.href='admin.html';
-    });
 
     $(document).on('click', '.home',function(e){
       e.preventDefault();
       window.location.href='login.php';
-    });
-    $(document).on('click', '.addUser',function(e){
-      e.preventDefault();
-      $.ajax({
-            url:"adduser.html",
-            method:"GET",
-            success:function(data){
-                 $('#adduser').html(data);
-                 alert(data);
-            }
-      })
     });
     
 	 
@@ -97,11 +62,4 @@ $(document).ready(function(){
             }//end of success
           });//end of ajax
   });//end of function on click of loginSubmit button
-
-    //handling back button press
-  history.pushState(null, null, document.URL);
-      window.addEventListener('popstate', function () {
-      history.pushState(null, null, document.URL);
-  });
-
 });

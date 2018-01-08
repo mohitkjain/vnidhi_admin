@@ -2,6 +2,19 @@
   <!-- Left side column. contains the logo and sidebar -->
 <?php require 'include/sidebar.php'; ?>
   <!-- Content Wrapper. Contains page content -->
+  <?php
+     if(isset($_SESSION['pay_user_id']))
+     { 
+       unset($_SESSION['pay_user_id']);
+       unset($_SESSION['pay_usertype']);
+       unset($_SESSION['pay_month']);
+       unset($_SESSION['pay_year']);
+       unset($_SESSION['pay_username']);
+       unset($_SESSION['pay_position']);
+       unset($_SESSION['pay_incentive']);
+      }
+    
+  ?>
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -99,6 +112,8 @@
 <script>
   $(function () {
 
+    var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
     myTable =  $('#example1').DataTable({
       'paging'      : true,
       'searching'   : false,
@@ -109,7 +124,6 @@
     $('#select_usertype').on('change', function() 
     {          
         var usertype=$('#select_usertype').val();
-        var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         $.ajax(
         {
           type: 'get',
@@ -121,12 +135,13 @@
             {
                 var user = [];
                 var month = data[i].month;
-                user.push(data[i].user_name);
+                var id = $.base64.encode('incentive_'+ data[i].user_id + '_' + usertype);
+                user.push("<a href='incentive_details.php?id=" + id +"'>" +data[i].user_name +"</a>");
                 user.push(data[i].position);
                 user.push(monthNames[month-1]);
                 user.push(data[i].year);               
                 user.push(data[i].user_incentive);
-                user.push("<a href='#' class='paid_btn'><i class='fa fa-edit'></i>Paid</a>");
+                user.push("<a href='#' id='pay_" + data[i].user_id + "' class='paid_btn' ><i class='fa fa-paypal'></i>Pay</a>");
                 master.push(user);
             });
             myTable.clear();
@@ -137,8 +152,43 @@
         $('#container_incentive').show();
     });
 
-    
+    $(document.body).on( 'click','.paid_btn', function()
+    {
+      var usertype=$('#select_usertype').val();
+      var user_id=$(this).attr('id').split('_')[1];
+      var user_name = $(this).closest('tr').find('td:eq(0)').text();
+      var position = $(this).closest('tr').find('td:eq(1)').text();
+      var monthName = $(this).closest('tr').find('td:eq(2)').text();
+      var year = $(this).closest('tr').find('td:eq(3)').text();
+      var incentive = $(this).closest('tr').find('td:eq(4)').text();
+
+      var month = monthNames.indexOf(monthName);
+      month++;
+      var data = 
+      {
+        user_id: user_id,
+        usertype: usertype,
+        month: month,
+        monthName: monthName,
+        year: year,
+        position: position,
+        user_name:user_name,
+        incentive:incentive,   
+        action : "incentive_session"
+      }
+
+      $.ajax({
+        url : "ajax.php",
+        type : "POST",
+        data : data,
+        success : function(d)
+        {
+          window.location = "pay_incentive.php";
+        }
+      })
+    });
   })
+ 
 </script>
 </body>
 </html>

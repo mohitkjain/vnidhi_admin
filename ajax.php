@@ -18,4 +18,15 @@
         $_SESSION['edit_tl_id'] = $_POST['tl_id'];
         $_SESSION['edit_tl_name'] = $_POST['tl_name'];
     }
+    if($action == "incentive_session")
+    {
+        $_SESSION['pay_user_id'] = $_POST['user_id'];
+        $_SESSION['pay_usertype'] = $_POST['usertype'];
+        $_SESSION['pay_month'] = $_POST['month'];
+        $_SESSION['pay_year'] = $_POST['year'];
+        $_SESSION['pay_username'] = $_POST['user_name'];
+        $_SESSION['pay_position'] = $_POST['position'];
+        $_SESSION['pay_incentive'] = $_POST['incentive'];
+        $_SESSION['pay_monthName'] = $_POST['monthName'];
+    }
 ?>

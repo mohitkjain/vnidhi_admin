@@ -6822,3 +6822,9 @@ table.text-center th {
 .reset_pass_btn{
     color : orange;
 }
+
+.go_btn
+{
+    padding-right: 10px;
+    padding-bottom: 30px;
+}
