@@ -101,7 +101,7 @@
           <ul class="treeview-menu">
             <li><a href="view_incentives.php"><i class="fa fa-circle-o"></i> View Incentive</a></li>
             <li><a href="unpaid_incentives.php"><i class="fa fa-circle-o"></i> Unpaid Incentive</a></li>
-            <li><a href="change_incentive.php"><i class="fa fa-circle-o"></i> Change Incentive</a></li>
+            <li><a href="view_incentives_schemes.php"><i class="fa fa-circle-o"></i>Incentive Schemes</a></li>
           </ul>
         </li>
          <li class="treeview">

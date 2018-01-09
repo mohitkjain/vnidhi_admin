@@ -154,7 +154,7 @@
       current_target=parseInt(current_target.replace(/,/g , ''));
       if(current_target=='')
       {
-        alert('Please Set Target for this month');
+        $('#current_target').after('<span class="error error-keyup-1">Please Set Target for this month.</span>');
       }
       else
       {

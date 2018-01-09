@@ -2,6 +2,15 @@
   <!-- Left side column. contains the logo and sidebar -->
 <?php require 'include/sidebar.php'; ?>
   <!-- Content Wrapper. Contains page content -->
+<?php 
+   $url = "http://test.vaibhavnidhi.com/api/admin/schemes";
+   header('Content-type: application/json');
+   $data = file_get_contents($url);
+   $schemes_data = json_decode($data);
+
+   if(isset($schemes_data))
+   {
+?>
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -22,25 +31,36 @@
             <div class="box-body">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
-                <tr>
-                  <th>Scheme ID</th>
-                  <th>Scheme Name</th>
-                  <th>Scheme Type</th>
-                  <th>Minimum Amount</th>                  
-                  <th>Rate Exist</th>
-                  <th>Multiple Amount</th>
-                </tr>
+                  <tr>
+                    <th>Scheme ID</th>
+                    <th>Scheme Name</th>
+                    <th>Scheme Type</th>
+                    <th>Minimum Amount</th>                  
+                    <th>Rate Exist</th>
+                    <th>Multiple Amount</th>
+                  </tr>
                 </thead>
                 <tbody>
-                <tr>
-                  <td>1</td>
-                  <td><a href="scheme_details.php">Daily Deposit Scheme</a></td>
-                  <td>RD</td>
-                  <td>100</td>
-                  <td>1</td>
-                  <td>100</td>
-                </tr>
-                
+                  <?php foreach($schemes_data as $scheme_data):?>
+                    <tr>
+                      <td><?php echo $scheme_data->scheme_id;  ?></td>
+                      <td id="scheme_<?php echo $scheme_data->scheme_id;  ?>"><a href="scheme_details.php"><?php echo $scheme_data->scheme_name;  ?></a></td>
+                      <td><?php echo $scheme_data->scheme_type;  ?></td>
+                      <td><?php echo $scheme_data->minimum_amount;  ?></td>
+                      <td><?php echo $scheme_data->rate_exists;  ?></td>
+                      <td><?php echo $scheme_data->multiple_amount;  ?></td>
+                    </tr>
+                  <?php endforeach; } ?> 
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <th>Scheme ID</th>
+                    <th>Scheme Name</th>
+                    <th>Scheme Type</th>
+                    <th>Minimum Amount</th>                  
+                    <th>Rate Exist</th>
+                    <th>Multiple Amount</th>
+                  </tr>
                 </tfoot>
               </table>
             </div>
