@@ -7,7 +7,7 @@
    header('Content-type: application/json');
    $data = file_get_contents($url);
    $schemes_data = json_decode($data);
-
+   
    if(isset($schemes_data))
    {
 ?>
@@ -41,14 +41,48 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <?php foreach($schemes_data as $scheme_data):?>
+                  <?php foreach($schemes_data as $scheme_data):
+                      $id = base64_encode($scheme_data->scheme_id.'_'.$scheme_data->scheme_name.'_'.$scheme_data->scheme_type.'_'.$scheme_data->minimum_amount.'_'.$scheme_data->rate_exists.'_'.$scheme_data->multiple_amount);
+                    ?>
                     <tr>
                       <td><?php echo $scheme_data->scheme_id;  ?></td>
-                      <td id="scheme_<?php echo $scheme_data->scheme_id;  ?>"><a href="scheme_details.php"><?php echo $scheme_data->scheme_name;  ?></a></td>
-                      <td><?php echo $scheme_data->scheme_type;  ?></td>
-                      <td><?php echo $scheme_data->minimum_amount;  ?></td>
-                      <td><?php echo $scheme_data->rate_exists;  ?></td>
-                      <td><?php echo $scheme_data->multiple_amount;  ?></td>
+                      <td><a href="scheme_details.php?id=<?php echo $id; ?>"><?php echo $scheme_data->scheme_name;  ?></a></td>
+                      <td>
+                        <?php 
+                          if($scheme_data->scheme_type === 'FD')
+                          {
+                            echo 'Fixed Deposit';
+                          }
+                          else
+                          {
+                            echo 'Recurring Deposit';
+                          }
+                        ?>
+                      </td>
+                      <td>
+                        <script>
+                          var a = <?php echo $scheme_data->minimum_amount; ?>;
+                          document.write(a.toLocaleString("en-IN",{style:"currency",currency:"INR"}));
+                        </script>
+                      </td>
+                      <td>
+                        <?php 
+                          if($scheme_data->rate_exists == 1)
+                          {
+                            echo 'Yes';
+                          }
+                          else
+                          {
+                            echo 'No';
+                          }
+                        ?>
+                      </td>
+                      <td>
+                        <script>
+                          var a = <?php echo $scheme_data->multiple_amount; ?>;
+                          document.write(a.toLocaleString("en-IN",{style:"currency",currency:"INR"}));
+                        </script>
+                      </td>
                     </tr>
                   <?php endforeach; } ?> 
                 </tbody>

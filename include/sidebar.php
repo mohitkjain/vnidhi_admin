@@ -65,18 +65,6 @@
             <li><a href="add_user.php"><i class="fa fa-circle-o"></i> Add User</a></li>
           </ul>
         </li>
-		<li class="treeview">
-          <a href="#">
-            <i class="fa fa-th"></i> <span>Teams</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-		  <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-circle-o"></i> View/Edit Teams</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> Add Teams</a></li>
-          </ul>
-        </li>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-pie-chart"></i>

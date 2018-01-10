@@ -6828,3 +6828,27 @@ table.text-center th {
     padding-right: 10px;
     padding-bottom: 30px;
 }
+
+.text-telecalling {
+    color: #A9A9A9 !important
+}
+
+.text-home-meeting {
+    color: #c96116 !important
+}
+
+.text-follow-up {
+    color: #0386c1 !important
+}
+
+.text-request-pending {
+    color: #d4b115 !important
+}
+
+.text-accepted {
+    color: #00c853 !important
+}
+
+.text-declined {
+    color: #b70a2c !important
+}

@@ -18,11 +18,21 @@
       header('Content-type: application/json');
       $data = file_get_contents($url);
       $lead_data = json_decode($data);
-      $active_leads;
-      $accepted_leads;
-      $declined_leads;
+      $lead_arrays = array('telecalling_done' => 0,'home_meeting' => 0,'follow_up' => 0,'request_pending' => 0,'accepted' => 0,'declined' => 0);
+      $active_leads = 0;
+      $total_leads = 0;
       if(isset($lead_data))
       {
+        foreach($lead_data as $leads)
+        {
+          $lead_arrays[$leads->status] = $leads->leads;
+          if($leads->status != 'accepted' && $leads->status != 'declined')
+          {
+            $active_leads += $leads->leads;
+          }
+          $total_leads += $leads->leads;
+        }
+      }
     ?>
     <!-- Main content -->
     <section class="content">
@@ -32,7 +42,7 @@
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h3><?php echo $lead_data->total_leads; ?></h3>
+              <h3><?php echo $total_leads; ?></h3>
               <p>Total Leads</p>
             </div>
             <div class="icon">
@@ -45,7 +55,7 @@
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3><?php echo $active_leads =  $lead_data->active_leads; ?></h3>
+              <h3><?php echo $active_leads; ?></h3>
               <p>Active Leads</p>
             </div>
             <div class="icon">
@@ -59,7 +69,7 @@
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3><?php echo $accepted_leads = $lead_data->accepted_leads; ?></h3>
+              <h3><?php echo $lead_arrays['accepted']; ?></h3>
               <p>Accepted Leads</p>
             </div>
             <div class="icon">
@@ -73,7 +83,7 @@
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              <h3><?php echo $declined_leads = $lead_data->declined_leads; ?></h3>
+              <h3><?php echo $lead_arrays['declined']; ?></h3>
               <p>Declined Leads</p>
             </div>
             <div class="icon">
@@ -84,7 +94,6 @@
         </div>
         <!-- ./col -->
       </div>
-      <?php } ?>
       <!-- /.row -->
       <div class="row">
         <div class="col-md-6">
@@ -99,7 +108,45 @@
                 <div id="calendar" style="width: 100%"></div>
               </div>
           </div>
-          <?php
+        </div>
+		    <div class="col-md-6">
+          <!-- DONUT CHART -->
+          <div class="box box-danger">
+            <div class="box-header with-border">
+              <h3 class="box-title">Leads Stats</h3>
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <div class="row">
+                <div class="col-md-8">
+                  <div class="chart-responsive">
+                    <canvas id="pieChart" ></canvas>
+                  </div>
+                  <!-- ./chart-responsive -->
+                </div>
+                <!-- /.col -->
+                <div class="col-md-4">
+                  <ul class="chart-legend clearfix">
+                    <li><i class="fa fa-circle-o text-telecalling"></i> Telecalling Done</li>
+                    <li><i class="fa fa-circle-o text-home-meeting"></i> Home Meeting</li>
+                    <li><i class="fa fa-circle-o text-follow-up"></i> Follow Up</li>
+                    <li><i class="fa fa-circle-o text-request-pending"></i> Request Pending</li>
+                    <li><i class="fa fa-circle-o text-accepted"></i> Accepted</li>
+                    <li><i class="fa fa-circle-o text-declined"></i> Declined</li>
+                  </ul>
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </div>
+            <!-- /.box-body -->
+          </div>
+		    </div>
+      </div>
+      <?php
               $url = "http://test.vaibhavnidhi.com/api/admin/employee_teams_stats";
               header('Content-type: application/json');
               $data = file_get_contents($url);
@@ -107,117 +154,162 @@
 
               if(isset($employee_team_data))
               {
-          ?>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="info-box bg-yellow">
-                <span class="info-box-icon"><i class="fa fa-user" aria-hidden="true"></i></span>
-                <div class="info-box-content">
-                  <span class="info-box-text">Total Employees</span>
-                  <span class="info-box-number"><?php echo $employee_team_data->total_employees; ?></span>
-                </div>
-                <!-- /.info-box-content -->
-              </div>          
+      ?>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="info-box bg-yellow">
+            <span class="info-box-icon"><i class="fa fa-user" aria-hidden="true"></i></span>
+            <div class="info-box-content">
+              <span class="info-box-text">Total Active Employees</span>
+              <span class="info-box-number"><?php echo $employee_team_data->total_employees; ?></span>
             </div>
-            <div class="col-md-6">
-              <!-- /.info-box -->
-              <div class="info-box bg-green">
-                <span class="info-box-icon"><i class="fa fa-users" aria-hidden="true"></i></span>
-                <div class="info-box-content">
-                  <span class="info-box-text">Total Teams</span>
-                  <span class="info-box-number"><?php echo $employee_team_data->total_teams; ?></span>
-                </div>
-              <!-- /.info-box-content -->
-              </div>
-            </div>
-          </div>
-          <?php } ?>
+            <!-- /.info-box-content -->
+          </div>          
         </div>
-		    <div class="col-md-6">
-          <!-- DONUT CHART -->
-          <div class="box box-danger">
-              <div class="box-header with-border">
-                <h3 class="box-title">Donut Chart</h3>
-                <div class="box-tools pull-right">
-                  <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                  </button>
-                </div>
-              </div>
-              <div class="box-body">
-                <canvas id="pieChart" style="height:250px"></canvas>
-              </div>
-              <!-- /.box-body -->
+        <div class="col-md-6">
+        <!-- /.info-box -->
+          <div class="info-box bg-green">
+            <span class="info-box-icon"><i class="fa fa-users" aria-hidden="true"></i></span>
+            <div class="info-box-content">
+              <span class="info-box-text">Total Teams</span>
+              <span class="info-box-number"><?php echo $employee_team_data->total_teams; ?></span>
+            </div>
+            <!-- /.info-box-content -->
           </div>
-		    </div>
-	    </div>
-		  <div class="row">
-        <div class="col-md-12">
-				  <div class="box">
-            <div class="box-header">
-              <h3 class="box-title">Data Table With Full Features</h3>
+        </div>
+      </div>
+      <?php } ?>
+      <?php
+        $url = "http://test.vaibhavnidhi.com/api/admin/top_performer/Salaried";
+        header('Content-type: application/json');
+        $data = file_get_contents($url);
+        $top_salaried_data = json_decode($data);
+      ?>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="box box-danger">
+            <div class="box-header with-border">
+              <h3 class="box-title">Top Salaried Employee</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="example1" class="table table-bordered table-striped">
-                <thead>
+              <table class="table table-bordered">
                 <tr>
-                  <th>Rendering engine</th>
-                  <th>Browser</th>
-                  <th>Platform(s)</th>
-                  <th>Engine version</th>
-                  <th>CSS grade</th>
+                  <th style="width: 10px">#</th>
+                  <th style="width: 200px">User Name</th>
+                  <th style="width: 100px">Total Leads</th>
+                  <th style="width: 200px">Total Business</th>
+                  <th>Ratio </th>
                 </tr>
-                </thead>
                 <tbody>
-                <tr>
-                  <td>Misc</td>
-                  <td>Links</td>
-                  <td>Text only</td>
-                  <td>-</td>
-                  <td>X</td>
-                </tr>
-                <tr>
-                  <td>Misc</td>
-                  <td>Lynx</td>
-                  <td>Text only</td>
-                  <td>-</td>
-                  <td>X</td>
-                </tr>
-                <tr>
-                  <td>Misc</td>
-                  <td>IE Mobile</td>
-                  <td>Windows Mobile 6</td>
-                  <td>-</td>
-                  <td>C</td>
-                </tr>
-                <tr>
-                  <td>Misc</td>
-                  <td>PSP browser</td>
-                  <td>PSP</td>
-                  <td>-</td>
-                  <td>C</td>
-                </tr>
-                <tr>
-                  <td>Other browsers</td>
-                  <td>All others</td>
-                  <td>-</td>
-                  <td>-</td>
-                  <td>U</td>
-                </tr>
-                </tbody>
-                <tfoot>
-                <tr>
-                  <th>Rendering engine</th>
-                  <th>Browser</th>
-                  <th>Platform(s)</th>
-                  <th>Engine version</th>
-                  <th>CSS grade</th>
-                </tr>
-                </tfoot>
+                  <tr>
+                    <?php
+                     if(count($top_salaried_data) > 0)
+                     {
+                        $no = 0;
+                        foreach($top_salaried_data as $top_salaried)
+                        {
+                          $percent = round(($top_salaried->total_leads/$lead_arrays['accepted'])*100 , 2);
+                    ?>
+                          <td> <?php echo ++$no; ?>. </td>
+                          <td> <?php echo $top_salaried->user_name; ?></td>
+                          <td> <?php echo $top_salaried->total_leads; ?></td>
+                          <td>
+                            <span class="badge bg-green">
+                              <script>
+                                var a = <?php echo $top_salaried->total_business; ?>;
+                                document.write(a.toLocaleString("en-IN",{style:"currency",currency:"INR"}));
+                              </script>                            
+                            </span>
+                          </td>
+                          <td>
+                            <div class="progress progress-xs progress-striped active">
+                                <div class="progress-bar progress-bar-success" style="width: <?php echo $percent; ?>%"></div>
+                            </div>
+                          </td>
+                  </tr>
+                  <?php
+                        }
+                    }
+                  else
+                  {
+                  ?>
+                  </td> No Data Available </td>
+                  <?php
+                  }
+                  ?>
+                  </tbody>
               </table>
             </div>
             <!-- /.box-body -->
           </div>
+          <!-- /.box -->
+        </div>
+        <?php
+          $url = "http://test.vaibhavnidhi.com/api/admin/top_performer/Telecaller";
+          header('Content-type: application/json');
+          $data = file_get_contents($url);
+          $top_telecaller_data = json_decode($data);
+        ?>
+        <div class="col-md-6">
+          <div class="box box-warning">
+            <div class="box-header with-border">
+              <h3 class="box-title">Top Telecaller Employee</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table class="table table-bordered">
+                <tr>
+                  <th style="width: 10px">#</th>
+                  <th style="width: 200px">User Name</th>
+                  <th style="width: 100px">Total Leads</th>
+                  <th style="width: 200px">Total Business</th>
+                  <th>Ratio </th>
+                </tr>
+                <tbody>
+                  <tr>
+                    <?php
+                     if(count($top_telecaller_data) > 0)
+                     {
+                        $no = 0;
+                        foreach($top_telecaller_data as $top_telecaller)
+                        {
+                          $percent = round(($top_telecaller->total_leads/$lead_arrays['accepted'])*100 , 2);
+                    ?>
+                          <td> <?php echo ++$no; ?>. </td>
+                          <td> <?php echo $top_telecaller->user_name; ?></td>
+                          <td> <?php echo $top_telecaller->total_leads; ?></td>
+                          <td>
+                            <span class="badge bg-green">
+                              <script>
+                                var a = <?php echo $top_telecaller->total_business; ?>;
+                                document.write(a.toLocaleString("en-IN",{style:"currency",currency:"INR"}));
+                              </script>                            
+                            </span>
+                          </td>
+                          <td>
+                            <div class="progress progress-xs progress-striped active">
+                                <div class="progress-bar progress-bar-success" style="width:<?php echo $percent; ?>%"></div>
+                            </div>
+                          </td>
+                  </tr>
+                  <?php
+                        }
+                    }
+                  else
+                  {
+                  ?>
+                  </td> No Data Available </td>
+                  <?php
+                  }
+                  ?>
+                  </tbody>
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
 			</div>
     </section>
     <!-- /.content -->
@@ -245,22 +337,40 @@
     var pieChart       = new Chart(pieChartCanvas)
     var PieData        = [
       {
-        value    : <?php echo $declined_leads; ?>,
-        color    : '#f56954',
-        highlight: '#f56954',
-        label    : 'Declined'
+        value    : <?php echo $lead_arrays['telecalling_done']; ?>,
+        color    : '#A9A9A9',
+        highlight: '#d3d3d3',
+        label    : 'Telecalling Done'
       },
       {
-        value    : <?php echo $accepted_leads; ?>,
-        color    : '#00a65a',
-        highlight: '#00a65a',
+        value    : <?php echo $lead_arrays['home_meeting']; ?>,
+        color    : '#c96116',
+        highlight: '#f18435',
+        label    : 'Home Meeting'
+      },
+      {
+        value    : <?php echo $lead_arrays['follow_up']; ?>,
+        color    : '#0386c1',
+        highlight: '#21aae7',
+        label    : 'Follow Up'
+      },
+      {
+        value    : <?php echo $lead_arrays['request_pending']; ?>,
+        color    : '#d4b115',
+        highlight: '#fdd835',
+        label    : 'Request Pending'
+      },
+      {
+        value    : <?php echo $lead_arrays['accepted']; ?>,
+        color    : '#00c853',
+        highlight: '#17ed85',
         label    : 'Accepted'
       },
       {
-        value    : <?php echo $active_leads; ?>,
-        color    : '#f39c12',
-        highlight: '#f39c12',
-        label    : 'Active'
+        value    : <?php echo $lead_arrays['declined']; ?>,
+        color    : '#b70a2c',
+        highlight: '#ec274d',
+        label    : 'Declined'
       }
     ]
     var pieOptions     = {
