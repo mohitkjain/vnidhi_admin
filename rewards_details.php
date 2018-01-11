@@ -1,6 +1,41 @@
 <?php require 'include/header.php'; ?>
   <!-- Left side column. contains the logo and sidebar -->
 <?php require 'include/sidebar.php'; ?>
+
+<?php 
+
+if($_SERVER['REQUEST_METHOD']=='GET')
+{
+  //getting the request values 
+  $data = trim($_REQUEST['data']);
+  $data = base64_decode($data);
+  list($val, $user_id, $user_type, $total_rewards, $redeem_points, $available_points) = preg_split('[_]', $data);
+
+  $url = 'http://test.vaibhavnidhi.com/api/rewards';
+  $ch = curl_init();
+
+  $post_data = "user_id=".$user_id."&usertype=".$user_type;
+                                
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($ch, CURLOPT_VERBOSE, 1);
+  curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+  curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+  curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+  curl_setopt($ch, CURLOPT_POSTFIELDS,$post_data);
+  curl_setopt($ch, CURLOPT_URL, $url);
+  curl_setopt($ch, CURLOPT_HEADER, 0);// No header in the result
+  
+  // Fetch and return content, save it.
+  $output_data= curl_exec($ch);
+  curl_close($ch);
+
+  if(!empty($output_data))
+  {
+    $json_data = json_decode($output_data);
+  }
+}
+
+?>
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -17,13 +52,12 @@
     <!-- Main content -->
     <section class="content">
       <div class="row">
-      <div class="col-md-3 col-sm-6 col-xs-12">
-        <div class="info-box">
-          <span class="info-box-icon bg-aqua"><i class="fa fa-envelope-o"></i></span>
-
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="info-box">
+            <span class="info-box-icon bg-aqua"><i class="fa fa-envelope-o"></i></span>
             <div class="info-box-content">
               <span class="info-box-text">Total Rewards Point</span>
-              <span class="info-box-number">1,410</span>
+              <span class="info-box-number"><?php echo $total_rewards; ?></span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -33,10 +67,9 @@
         <div class="col-md-3 col-sm-6 col-xs-12">
           <div class="info-box">
             <span class="info-box-icon bg-green"><i class="fa fa-flag-o"></i></span>
-
             <div class="info-box-content">
               <span class="info-box-text">RD Rewards Point</span>
-              <span class="info-box-number">410</span>
+              <span class="info-box-number"><?php echo $json_data->total_rd_reward; ?></span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -49,7 +82,7 @@
 
             <div class="info-box-content">
               <span class="info-box-text">FD Rewards Point</span>
-              <span class="info-box-number">13,648</span>
+              <span class="info-box-number"><?php echo $json_data->total_fd_reward; ?></span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -62,13 +95,14 @@
 
             <div class="info-box-content">
               <span class="info-box-text">Available Rewards Point</span>
-              <span class="info-box-number">93,139</span>
+              <span class="info-box-number"><?php echo $available_points; ?></span>
             </div>
             <!-- /.info-box-content -->
           </div>
           <!-- /.info-box -->
         </div>
-        <!-- /.col -->		
+        <!-- /.col -->
+      </div>		
       <!-- /.row -->
 
       <div class="row">
@@ -78,20 +112,39 @@
             <div class="box-body">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
-                <tr>
-                  <th>Lead ID</th>
-                  <th>Customer Name</th>
-                  <th>Installment No</th>
-                  <th>Reward Points</th>
-                </tr>
+                  <tr>
+                    <th>Lead ID</th>
+                    <th>Customer Name</th>
+                    <th>Installment No</th>
+                    <th>Date </th>
+                    <th>Amount </th>
+                    <th>Reward Points</th>
+                  </tr>
                 </thead>
                 <tbody>
+                <?php 
+                  foreach($json_data->reward->rd_reward as $rd_data)
+                  {
+                ?>
                 <tr>
-                  <td>5</td>
-                  <td>Mohit Kumar Jain</td>
-                  <td>1</td>                  
-                  <td>5,000</td>
-                </tr>                
+                  <td><?php echo $rd_data['lead_id']; ?></td>
+                  <td><?php echo $rd_data['lead_id']; ?></td>
+                  <td><?php echo $rd_data['lead_id']; ?></td>            
+                  <td><?php echo $rd_data['lead_id']; ?></td>
+                  <td><?php echo $rd_data['lead_id']; ?></td>
+                  <td><?php echo $rd_data['lead_id']; ?></td>
+                </tr>
+                  <?php } ?>
+                </tbody>
+                <tfoot>  
+                  <tr>
+                    <th>Lead ID</th>
+                    <th>Customer Name</th>
+                    <th>Installment No</th>
+                    <th>Date </th>
+                    <th>Amount </th>
+                    <th>Reward Points</th>
+                  </tr>              
                 </tfoot>
               </table>
             </div>

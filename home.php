@@ -215,7 +215,24 @@
                           <td> <?php echo $top_salaried->user_name; ?></td>
                           <td> <?php echo $top_salaried->total_leads; ?></td>
                           <td>
-                            <span class="badge bg-green">
+                            <span class="badge bg-<?php  
+                              if($percent <= 25)
+                              {
+                                echo 'red';
+                              }
+                              else if($percent > 25 && $percent <= 50)
+                              {
+                                echo 'yellow';
+                              }
+                              else if($percent > 50 && $percent <= 75)
+                              {
+                                echo 'light-blue';
+                              }
+                              else if($percent > 75 && $percent <= 100)
+                              {
+                                echo 'green';
+                              }                            
+                            ?>">
                               <script>
                                 var a = <?php echo $top_salaried->total_business; ?>;
                                 document.write(a.toLocaleString("en-IN",{style:"currency",currency:"INR"}));
@@ -224,7 +241,24 @@
                           </td>
                           <td>
                             <div class="progress progress-xs progress-striped active">
-                                <div class="progress-bar progress-bar-success" style="width: <?php echo $percent; ?>%"></div>
+                                <div class="progress-bar progress-bar-<?php  
+                                  if($percent <= 25)
+                                  {
+                                    echo 'danger';
+                                  }
+                                  else if($percent > 25 && $percent <= 50)
+                                  {
+                                    echo 'yellow';
+                                  }
+                                  else if($percent > 50 && $percent <= 75)
+                                  {
+                                    echo 'primary';
+                                  }
+                                  else if($percent > 75 && $percent <= 100)
+                                  {
+                                    echo 'success';
+                                  }                            
+                                  ?>" style="width: <?php echo $percent; ?>%"></div>
                             </div>
                           </td>
                   </tr>
@@ -234,7 +268,7 @@
                   else
                   {
                   ?>
-                  </td> No Data Available </td>
+                  <td colspan="5"> No Data Available </td>
                   <?php
                   }
                   ?>
@@ -280,7 +314,24 @@
                           <td> <?php echo $top_telecaller->user_name; ?></td>
                           <td> <?php echo $top_telecaller->total_leads; ?></td>
                           <td>
-                            <span class="badge bg-green">
+                            <span class="badge bg-<?php  
+                              if($percent <= 25)
+                              {
+                                echo 'red';
+                              }
+                              else if($percent > 25 && $percent <= 50)
+                              {
+                                echo 'yellow';
+                              }
+                              else if($percent > 50 && $percent <= 75)
+                              {
+                                echo 'light-blue';
+                              }
+                              else if($percent > 75 && $percent <= 100)
+                              {
+                                echo 'green';
+                              }                            
+                            ?>">
                               <script>
                                 var a = <?php echo $top_telecaller->total_business; ?>;
                                 document.write(a.toLocaleString("en-IN",{style:"currency",currency:"INR"}));
@@ -289,7 +340,24 @@
                           </td>
                           <td>
                             <div class="progress progress-xs progress-striped active">
-                                <div class="progress-bar progress-bar-success" style="width:<?php echo $percent; ?>%"></div>
+                                <div class="progress-bar progress-bar-<?php  
+                                  if($percent <= 25)
+                                  {
+                                    echo 'danger';
+                                  }
+                                  else if($percent > 25 && $percent <= 50)
+                                  {
+                                    echo 'yellow';
+                                  }
+                                  else if($percent > 50 && $percent <= 75)
+                                  {
+                                    echo 'primary';
+                                  }
+                                  else if($percent > 75 && $percent <= 100)
+                                  {
+                                    echo 'success';
+                                  }                            
+                                  ?>" style="width:<?php echo $percent; ?>%"></div>
                             </div>
                           </td>
                   </tr>
@@ -299,7 +367,7 @@
                   else
                   {
                   ?>
-                  </td> No Data Available </td>
+                  <td colspan="5"> No Data Available </td>
                   <?php
                   }
                   ?>

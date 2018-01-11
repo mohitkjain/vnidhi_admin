@@ -135,12 +135,13 @@
             {
                 var user = [];
                 var month = data[i].month;
+                
                 var id = $.base64.encode('incentive_'+ data[i].user_id + '_' + usertype);
                 user.push("<a href='incentive_details.php?id=" + id +"'>" +data[i].user_name +"</a>");
                 user.push(data[i].position);
                 user.push(monthNames[month-1]);
                 user.push(data[i].year);               
-                user.push(data[i].user_incentive);
+                user.push(parseInt(data[i].user_incentive).toLocaleString("en-IN",{style:"currency",currency:"INR"}));
                 user.push("<a href='#' id='pay_" + data[i].user_id + "' class='paid_btn' ><i class='fa fa-paypal'></i>Pay</a>");
                 master.push(user);
             });

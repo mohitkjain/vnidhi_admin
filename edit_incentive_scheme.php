@@ -16,7 +16,7 @@ if($_SERVER['REQUEST_METHOD']=='GET')
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>Pay Incentive</h1>
+      <h1>Edit Incentive Scheme</h1>
       <ol class="breadcrumb">
         <li><a href="home.php"><i class="fa fa-dashboard"></i> Home</a></li>
 		    <li><a href="#">Incentive</a></li>
