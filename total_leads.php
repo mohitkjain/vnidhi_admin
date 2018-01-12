@@ -43,8 +43,8 @@
                 <tbody>
                 <tr>
                 <?php foreach($total_leads_data as $lead_data):?>
-                  <td><?php echo '<a href="leads_details.php?lead_id=' .$lead_data->lead_id.'">'. $lead_data->lead_id.'</a>'; ?></td>
-                  <td><?php echo $lead_data->c_name; ?></td>
+                  <td><?php echo $lead_data->lead_id; ?></td>
+                  <td><?php echo '<a href="leads_details.php?lead_id=' .$lead_data->lead_id.'">'.$lead_data->c_name.'</a>'; ?></td>
                   <td><?php echo $lead_data->status; ?></td>
                   <td><?php echo $lead_data->creator_name; ?></td>
                   <td><?php echo $lead_data->assignee_name; ?></td>

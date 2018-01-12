@@ -10,8 +10,6 @@ if($_SERVER['REQUEST_METHOD']=='GET')
   $data = trim($_REQUEST['data']);
   $data = base64_decode($data);
   list($id, $user_type, $lead_type, $year, $reward_per) = preg_split('[_]', $data); 
-  echo $data;
-
 }
 
 ?>

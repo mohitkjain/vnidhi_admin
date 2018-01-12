@@ -101,7 +101,7 @@
 
     myTable =  $('#example1').DataTable({
       'paging'      : true,
-      'searching'   : false,
+      'searching'   : true,
       'ordering'    : true,
       'info'        : true,
       'autoWidth'   : true

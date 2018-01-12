@@ -218,7 +218,17 @@
                       <p class="text-muted"> <?php if($scheme_name == NULL) echo "NA"; else echo $scheme_name;?></p>
                       <hr>
                       <strong><i class="fa fa-rupee margin-r-5"></i> Amount</strong>
-                      <p class="text-muted"><?php if($amount == NULL) echo "NA"; echo  $amount;?></p>
+                      <p class="text-muted"><?php 
+                                              if($amount == NULL) 
+                                              {  echo "NA"; }
+                                              else
+                                              {
+                                            ?>
+                                                <script>
+                                                  var a = <?php echo  $amount; ?>;
+                                                  document.write(a.toLocaleString("en-IN",{style:"currency",currency:"INR"}));
+                                                </script>
+                                              <?php } ?></p>
                    </div>
                    <div class="box_50">
                       <strong><i class="fa fa-calendar margin-r-5"></i> Duration</strong>

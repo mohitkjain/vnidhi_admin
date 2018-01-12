@@ -100,7 +100,7 @@
 
     myTable =  $('#example1').DataTable({
       'paging'      : true,
-      'searching'   : false,
+      'searching'   : true,
       'ordering'    : true,
       'info'        : true,
       'autoWidth'   : true
@@ -127,8 +127,8 @@
                 user.push(usertype);
                 user.push(data[i].position);
                 user.push(user_reward);
-                user.push(reedem_points.toLocaleString());
-                user.push(avaiable_rewards.toLocaleString());
+                user.push(reedem_points);
+                user.push(avaiable_rewards);
                 master.push(user);
             });
             myTable.clear();

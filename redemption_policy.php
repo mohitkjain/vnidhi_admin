@@ -2,25 +2,26 @@
   <!-- Left side column. contains the logo and sidebar -->
 <?php require 'include/sidebar.php'; ?>
   <!-- Content Wrapper. Contains page content -->
+<?php 
+   $url = "http://test.vaibhavnidhi.com/api/admin/redemption/policy";
+   header('Content-type: application/json');
+   $data = file_get_contents($url);
+   $redemption_data = json_decode($data);
+   $no = 0;
+   if(count($redemption_data) > 0)
+   {
+?>
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>Active Leads </h1>
+      <h1>Redemption Policy </h1>
       <ol class="breadcrumb">
         <li><a href="home.php"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Leads</a></li>
-        <li class="active">Active Leads</li>
+        <li><a href="#">Rewards</a></li>
+        <li class="active">Redemption Policy</li>
       </ol>
     </section>
-    <?php
-      $url = "http://test.vaibhavnidhi.com/api/admin/active_leads";
-      header('Content-type: application/json');
-      $data = file_get_contents($url);
-      $active_leads_data = json_decode($data);
 
-      if(isset($active_leads_data))
-      {
-    ?>
     <!-- Main content -->
     <section class="content">
       <div class="row">
@@ -29,37 +30,39 @@
           <div class="box">            
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="example1" class="table table-bordered table-striped leads_table">
+              <table id="example1" class="table table-bordered table-striped">
                 <thead>
                   <tr>
-                    <th>Lead ID</th>
-                    <th>Customer Name</th>
-                    <th>Status</th>
-                    <th>Creator Name</th>
-                    <th>Assignee Name</th>
-                    <th>Date Created</th>
+                    <th>S. No.</th>
+                    <th>Rewards Points</th>
+                    <th>Reward</th>
+                    <th class="sorting_disabled">Action </th>
                   </tr>
                 </thead>
                 <tbody>
+                  <?php 
+                    foreach($redemption_data as $redemption):
+                      $data = base64_encode($redemption->id.'_'.$redemption->rewards_points.'_'.$redemption->reward);
+                  ?>
                   <tr>
-                  <?php foreach($active_leads_data as $lead_data):?>
-                    <td><?php echo $lead_data->lead_id; ?></td>
-                    <td><?php echo '<a href="leads_details.php?lead_id=' .$lead_data->lead_id.'">'.$lead_data->c_name.'</a>'; ?></td>
-                    <td><?php echo $lead_data->status; ?></td>
-                    <td><?php echo $lead_data->creator_name; ?></td>
-                    <td><?php echo $lead_data->assignee_name; ?></td>
-                    <td><?php echo $lead_data->date_created; ?></td>
+                    <td><?php echo ++$no;  ?></td>
+                    <td>
+                      <script>
+                        var a = <?php echo $redemption->rewards_points;  ?>;
+                        document.write(a.toLocaleString("en-IN"));
+                      </script> 
+                    </td>
+                    <td><?php echo $redemption->reward;  ?></td>
+                    <td><a href='edit_redemption_policy.php?data="<?php echo $data; ?>"' class='edit_redemption_btn' id='edit_' data-toggle='tooltip' title='Edit'><i class='fa fa-edit'></i>Edit</a></td>
                   </tr>
                   <?php endforeach; } ?> 
                 </tbody>
-                <tfoot>
-                 <tr>
-                    <th>Lead ID</th>
-                    <th>Customer Name</th>
-                    <th>Status</th>
-                    <th>Creator Name</th>
-                    <th>Assignee Name</th>
-                    <th>Date Created</th>
+                </tfoot>
+                  <tr>
+                    <th>S. No.</th>
+                    <th>Rewards Points</th>
+                    <th>Reward</th>
+                    <th>Action </th>
                   </tr>
                 </tfoot>
               </table>
@@ -81,6 +84,7 @@
     </div>
 	  <span>Made by <a href="https://www.techradius.net/" target="_blank">Techradius Hitech Pvt. Ltd.</a> All Rights Reserved. A part of   <a href="http://www.vaibhv.com/" target="_blank">Vaibhav Group</a>.</span>
   </footer>
+  <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
 <script>
@@ -88,7 +92,6 @@
     $('#example1').DataTable()
     $('#example2').DataTable({
       'paging'      : true,
-      'lengthChange': false,
       'searching'   : false,
       'ordering'    : true,
       'info'        : true,

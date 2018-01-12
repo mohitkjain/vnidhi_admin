@@ -279,11 +279,11 @@ $(function ()
                 {
                     var incentive = [];
                     incentive.push(data.incentive["fd_incentive"][i].lead_id);
-                    incentive.push(data.incentive["fd_incentive"][i].c_name);
+                    incentive.push("<a href='leads_details.php?lead_id=" + data.incentive["fd_incentive"][i].lead_id + "'>" + data.incentive["fd_incentive"][i].c_name + "</a>");
                     incentive.push("Fixed Deposit");
-                    incentive.push("<b>" + data.incentive["fd_incentive"][i].incentive + "</b>");               
+                    incentive.push("<b>" + parseInt(data.incentive["fd_incentive"][i].incentive).toLocaleString("en-IN",{style:"currency",currency:"INR"}) + "</b>");               
                     incentive.push(data.incentive["fd_incentive"][i].date);
-                    incentive.push(data.incentive["fd_incentive"][i].amount);
+                    incentive.push(parseInt(data.incentive["fd_incentive"][i].amount).toLocaleString("en-IN",{style:"currency",currency:"INR"}));
                     incentive.push(data.incentive["fd_incentive"][i].duration);
                     master_incentive.push(incentive);
                 });
@@ -292,7 +292,7 @@ $(function ()
               {
                 var incentive = [];
                 incentive.push(data.incentive["rd_incentive"][i].lead_id);
-                incentive.push(data.incentive["rd_incentive"][i].c_name);
+                incentive.push("<a href='leads_details.php?lead_id=" + data.incentive["rd_incentive"][i].lead_id + "'>" + data.incentive["rd_incentive"][i].c_name + "</a>");
                 if(usertype == "Telecaller")
                 {
                   incentive.push("Recurring Deposit");
@@ -301,9 +301,9 @@ $(function ()
                 {
                   incentive.push(data.incentive["rd_incentive"][i].installment_no);
                 }
-                incentive.push("<b>" + data.incentive["rd_incentive"][i].incentive + "</b>");               
+                incentive.push("<b>" + parseInt(data.incentive["rd_incentive"][i].incentive).toLocaleString("en-IN",{style:"currency",currency:"INR"}) + "</b>");               
                 incentive.push(data.incentive["rd_incentive"][i].date);
-                incentive.push(data.incentive["rd_incentive"][i].amount);
+                incentive.push(parseInt(data.incentive["rd_incentive"][i].amount).toLocaleString("en-IN",{style:"currency",currency:"INR"}));
                 incentive.push(data.incentive["rd_incentive"][i].duration);
                 master_incentive.push(incentive);
               });

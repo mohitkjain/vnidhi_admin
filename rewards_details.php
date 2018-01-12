@@ -54,35 +54,15 @@ if($_SERVER['REQUEST_METHOD']=='GET')
       <div class="row">
         <div class="col-md-3 col-sm-6 col-xs-12">
           <div class="info-box">
-            <span class="info-box-icon bg-aqua"><i class="fa fa-envelope-o"></i></span>
-            <div class="info-box-content">
-              <span class="info-box-text">Total Rewards Point</span>
-              <span class="info-box-number"><?php echo $total_rewards; ?></span>
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
-        <div class="col-md-3 col-sm-6 col-xs-12">
-          <div class="info-box">
-            <span class="info-box-icon bg-green"><i class="fa fa-flag-o"></i></span>
-            <div class="info-box-content">
-              <span class="info-box-text">RD Rewards Point</span>
-              <span class="info-box-number"><?php echo $json_data->total_rd_reward; ?></span>
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
-        <div class="col-md-3 col-sm-6 col-xs-12">
-          <div class="info-box">
-            <span class="info-box-icon bg-yellow"><i class="fa fa-files-o"></i></span>
-
+            <span class="info-box-icon bg-aqua"><i class="fa fa-trophy"></i></span>
             <div class="info-box-content">
               <span class="info-box-text">FD Rewards Point</span>
-              <span class="info-box-number"><?php echo $json_data->total_fd_reward; ?></span>
+              <span class="info-box-number">
+                <script>
+                  var a = <?php echo $json_data->total_fd_reward; ?>;
+                  document.write(a.toLocaleString("en-IN"));
+                </script>
+              </span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -91,7 +71,37 @@ if($_SERVER['REQUEST_METHOD']=='GET')
         <!-- /.col -->
         <div class="col-md-3 col-sm-6 col-xs-12">
           <div class="info-box">
-            <span class="info-box-icon bg-red"><i class="fa fa-star-o"></i></span>
+            <span class="info-box-icon bg-green"><i class="fa fa-trophy"></i></span>
+            <div class="info-box-content">
+              <span class="info-box-text">RD Rewards Point</span>
+              <span class="info-box-number">
+                <script>
+                  var a = <?php echo $json_data->total_rd_reward; ?>;
+                  document.write(a.toLocaleString("en-IN"));
+                </script>
+              </span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="info-box">
+            <span class="info-box-icon bg-yellow"><i class="fa fa-star-half-o"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Redeem Rewards</span>
+              <span class="info-box-number"><?php echo $redeem_points; ?></span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="info-box">
+            <span class="info-box-icon bg-red"><i class="fa fa-star"></i></span>
 
             <div class="info-box-content">
               <span class="info-box-text">Available Rewards Point</span>
@@ -122,19 +132,61 @@ if($_SERVER['REQUEST_METHOD']=='GET')
                   </tr>
                 </thead>
                 <tbody>
-                <?php 
-                  foreach($json_data->reward->rd_reward as $rd_data)
+                <?php
+                  
+                  if(count($json_data->reward->rd_reward) > 0)
                   {
+                    foreach($json_data->reward->rd_reward as $rd_data)
+                    {                  
                 ?>
                 <tr>
-                  <td><?php echo $rd_data['lead_id']; ?></td>
-                  <td><?php echo $rd_data['lead_id']; ?></td>
-                  <td><?php echo $rd_data['lead_id']; ?></td>            
-                  <td><?php echo $rd_data['lead_id']; ?></td>
-                  <td><?php echo $rd_data['lead_id']; ?></td>
-                  <td><?php echo $rd_data['lead_id']; ?></td>
+                  <td><?php echo $rd_data->lead_id; ?></td>
+                  <td><a href="leads_details.php?lead_id=<?php echo $rd_data->lead_id; ?>"><?php echo $rd_data->c_name; ?></a></td>
+                  <td><?php echo $rd_data->installment_no; ?></td>            
+                  <td><?php echo $rd_data->date; ?></td>
+                  <td>
+                    <script>
+                      var a = <?php echo $rd_data->amount;  ?>;
+                      document.write(a.toLocaleString("en-IN",{style:"currency",currency:"INR"}));
+                    </script>
+                  </td>
+                  <td>
+                    <script>
+                      var a = <?php echo $rd_data->current_reward;  ?>;
+                      document.write(a.toLocaleString("en-IN"));
+                    </script> 
+                  </td>
                 </tr>
-                  <?php } ?>
+                <?php
+                    }
+                  }
+                  if(count($json_data->reward->fd_reward) > 0)
+                  {
+                    foreach($json_data->reward->fd_reward as $fd_data)
+                    {                  
+                ?>
+                <tr>
+                  <td><?php echo $fd_data->lead_id; ?></td>
+                  <td><a href="leads_details.php?lead_id=<?php echo $rd_data->lead_id; ?>"><?php echo $fd_data->c_name; ?></td>
+                  <td><?php echo 'Fixed Deposit'; ?></td>            
+                  <td><?php echo $fd_data->date; ?></td>
+                  <td>
+                    <script>
+                      var a = <?php echo $fd_data->amount;  ?>;
+                      document.write(a.toLocaleString("en-IN",{style:"currency",currency:"INR"}));
+                    </script> 
+                  </td>
+                  <td>
+                    <script>
+                      var a = <?php echo $fd_data->current_reward;  ?>;
+                      document.write(a.toLocaleString("en-IN"));
+                    </script> 
+                  </td>
+                </tr>
+                <?php
+                    }
+                  } 
+                ?>
                 </tbody>
                 <tfoot>  
                   <tr>

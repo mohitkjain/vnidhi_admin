@@ -1,3 +1,9 @@
+<?php
+  session_start();
+  if(isset($_SESSION['user_session']))
+  {
+?>
+
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 <header class="main-header">
@@ -14,7 +20,7 @@
       <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
         <span class="sr-only">Toggle navigation</span>
       </a>
-      <a class="home logout_btn">Logout <span class="glyphicon glyphicon-log-out"></span></a>
+      <a href="logout.php" class="home logout_btn">Logout <span class="glyphicon glyphicon-log-out"></span></a>
     </nav>
 </header>
 <aside class="main-sidebar">
@@ -101,9 +107,9 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="view_rewards.php"><i class="fa fa-circle-o"></i> View Reward Points</a></li>
-            <li><a href="change_reward.php"><i class="fa fa-circle-o"></i> Change Rewards</a></li>
+            <li><a href="view_rewards.php"><i class="fa fa-circle-o"></i> View Reward Points</a></li>            
             <li><a href="rewards_policy.php"><i class="fa fa-circle-o"></i> Rewards Policy </a></li>
+            <li><a href="redemption_policy.php"><i class="fa fa-circle-o"></i> Redemption Policy</a></li>
           </ul>
         </li>       
        
@@ -114,3 +120,15 @@
     </section>
     <!-- /.sidebar -->
   </aside>
+<?php
+  }
+  else
+  {
+  ?>
+    <script>
+      window.location.href = "login.php";
+    </script>
+<?php
+
+  }
+?>
