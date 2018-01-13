@@ -483,6 +483,9 @@ $(function () {
       'autoWidth'   : false
     })
   })
+
+  // The Calender
+  $('#calendar').datepicker();
 </script>	
 </body>
 </html>
