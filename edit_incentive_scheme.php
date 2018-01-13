@@ -11,6 +11,10 @@ if($_SERVER['REQUEST_METHOD']=='GET')
   $data = base64_decode($data);
   list($val, $lead_type, $scheme_type, $user_type, $duration, $incentive) = preg_split('[_]', $data); 
 }
+else
+{
+    echo '<script> window.location = "error.php"; </script>';
+}
 
 ?>
   <div class="content-wrapper">

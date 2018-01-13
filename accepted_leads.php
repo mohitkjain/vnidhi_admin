@@ -15,7 +15,7 @@
 
     <?php
       $url = "http://test.vaibhavnidhi.com/api/admin/accepted_leads";
-      header('Content-type: application/json');
+      //header('Content-type: application/json');
       $data = file_get_contents($url);
       $accepted_leads_data = json_decode($data);
 
@@ -51,7 +51,13 @@
                       <td><?php echo $lead_data->date_created; ?></td>
                       <td><?php echo $lead_data->closing_date; ?></td>
                   </tr>
-                  <?php endforeach; } ?> 
+                  <?php endforeach; 
+                  }
+                    else
+                    {
+                        echo '<script> window.location = "error.php"; </script>';
+                    }
+                  ?> 
                 </tbody>
                 <tfoot>
                   <tr>

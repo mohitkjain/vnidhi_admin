@@ -14,7 +14,6 @@
     </section>
 
     <?php
-      session_start();
       if(isset($_SESSION['reset_id']))
       {
         unset($_SESSION['reset_id']);
@@ -35,7 +34,7 @@
       }
            
       $url = "http://test.vaibhavnidhi.com/api/users";
-      header('Content-type: application/json');
+      //header('Content-type: application/json');
       $data = file_get_contents($url);
       $user_data = json_decode($data);
 
@@ -128,7 +127,13 @@
                       <?php } ?>
                     </td>
                   </tr>
-                  <?php endforeach; } ?>  
+                  <?php endforeach; 
+                  }
+                  else
+                  {
+                      echo '<script> window.location = "error.php"; </script>';
+                  }
+                  ?>  
                 </tbody>
                 <tfoot>
                   <tr>

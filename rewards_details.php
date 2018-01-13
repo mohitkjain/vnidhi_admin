@@ -34,6 +34,10 @@ if($_SERVER['REQUEST_METHOD']=='GET')
     $json_data = json_decode($output_data);
   }
 }
+else
+{
+    echo '<script> window.location = "error.php"; </script>';
+}
 
 ?>
   <!-- Content Wrapper. Contains page content -->

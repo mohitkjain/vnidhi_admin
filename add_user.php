@@ -4,7 +4,7 @@
   <!-- Content Wrapper. Contains page content -->
   <?php
       $url = "http://test.vaibhavnidhi.com/api/teamleaders";
-      header('Content-type: application/json');
+      //header('Content-type: application/json');
       $data = file_get_contents($url);
       $teamleaders_data = json_decode($data);
       $tl_data = array();
@@ -18,7 +18,11 @@
             $tl_data[$key][$user_key]['tl_name'] = $user_data->tl_name;       
           }
         }
-      }   
+      } 
+      else
+      {
+          echo '<script> window.location = "error.php"; </script>';
+      }  
   ?>
 
   <div class="content-wrapper">

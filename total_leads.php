@@ -14,7 +14,7 @@
     </section>
     <?php
       $url = "http://test.vaibhavnidhi.com/api/admin/total_leads";
-      header('Content-type: application/json');
+      //header('Content-type: application/json');
       $data = file_get_contents($url);
       $total_leads_data = json_decode($data);
 
@@ -77,7 +77,13 @@
                   <td><?php echo $lead_data->assignee_name; ?></td>
                   <td><?php echo $lead_data->date_created; ?></td>
                 </tr>
-                <?php endforeach; } ?> 
+                <?php endforeach; 
+                }
+                else
+                {
+                    echo '<script> window.location = "error.php"; </script>';
+                }
+                ?> 
                 </tbody>
                 <tfoot>
                   <tr>

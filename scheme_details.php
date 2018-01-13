@@ -11,7 +11,7 @@
     list($scheme_id, $scheme_name, $scheme_type, $minimum_amount, $rate_exists, $multiple_amount) = preg_split('[_]', $data);
    
     $url = "http://test.vaibhavnidhi.com/api/admin/schemes/".$scheme_id."/".$rate_exists;
-    header('Content-type: application/json');
+    //header('Content-type: application/json');
     $data = file_get_contents($url);
     $schemes_data = json_decode($data);
    
@@ -118,6 +118,10 @@
                           }
                         }
                       } 
+                      else
+                      {
+                          echo '<script> window.location = "error.php"; </script>';
+                      }
                       ?>
                     </table>
                   </div>

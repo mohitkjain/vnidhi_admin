@@ -33,6 +33,10 @@
           $total_leads += $leads->leads;
         }
       }
+      else
+      {
+          echo '<script> window.location = "error.php"; </script>';
+      }
     ?>
     <!-- Main content -->
     <section class="content">
@@ -148,7 +152,7 @@
       </div>
       <?php
               $url = "http://test.vaibhavnidhi.com/api/admin/employee_teams_stats";
-              header('Content-type: application/json');
+              //header('Content-type: application/json');
               $data = file_get_contents($url);
               $employee_team_data = json_decode($data);
 
@@ -181,7 +185,7 @@
       <?php } ?>
       <?php
         $url = "http://test.vaibhavnidhi.com/api/admin/top_performer/Salaried";
-        header('Content-type: application/json');
+        //header('Content-type: application/json');
         $data = file_get_contents($url);
         $top_salaried_data = json_decode($data);
       ?>
@@ -281,7 +285,7 @@
         </div>
         <?php
           $url = "http://test.vaibhavnidhi.com/api/admin/top_performer/Telecaller";
-          header('Content-type: application/json');
+          //header('Content-type: application/json');
           $data = file_get_contents($url);
           $top_telecaller_data = json_decode($data);
         ?>

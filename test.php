@@ -1,6 +1,6 @@
 <?php
     $url = "http://test.vaibhavnidhi.com/api/users";
-    header('Content-type: application/json');
+    //header('Content-type: application/json');
     $data = file_get_contents($url);
     $user_data = json_decode($data);
     if(isset($user_data))

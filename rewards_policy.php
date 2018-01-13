@@ -4,7 +4,7 @@
   <!-- Content Wrapper. Contains page content -->
 <?php 
    $url = "http://test.vaibhavnidhi.com/api/admin/rewards/schemes";
-   header('Content-type: application/json');
+   //header('Content-type: application/json');
    $data = file_get_contents($url);
    $rewards_data = json_decode($data);
    
@@ -84,7 +84,13 @@
                     <td><?php echo $reward_data->reward_per;  ?>%</td>
                     <td><a href='edit_reward_scheme.php?data="<?php echo $data; ?>"' class='edit_rewards_btn' id='edit_' data-toggle='tooltip' title='Edit'><i class='fa fa-edit'></i>Edit</a></td>
                   </tr>
-                  <?php endforeach; } ?> 
+                  <?php endforeach; 
+                }
+                else
+                {
+                    echo '<script> window.location = "error.php"; </script>';
+                }
+                ?> 
                 </tbody>
                 </tfoot>
                   <tr>

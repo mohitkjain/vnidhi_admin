@@ -11,6 +11,10 @@ if($_SERVER['REQUEST_METHOD']=='GET')
   $data = base64_decode($data);
   list($id, $rewards_points, $reward) = preg_split('[_]', $data); 
 }
+else
+{
+    echo '<script> window.location = "error.php"; </script>';
+}
 
 ?>
   <div class="content-wrapper">

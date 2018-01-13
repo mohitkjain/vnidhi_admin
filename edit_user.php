@@ -3,9 +3,9 @@
 <?php require 'include/sidebar.php'; ?>
 
 <?php
-    session_start();
+   session_start();
     $url = "http://test.vaibhavnidhi.com/api/teamleaders";
-    header('Content-type: application/json');
+    //header('Content-type: application/json');
     $data = file_get_contents($url);
     $teamleaders_data = json_decode($data);
     $tl_data = array();
@@ -20,6 +20,10 @@
         }
       }
     } 
+    else
+    {
+        echo '<script> window.location = "error.php"; </script>';
+    }
      $tl_id = $_SESSION['edit_tl_id'];
 ?>
   <!-- Content Wrapper. Contains page content -->

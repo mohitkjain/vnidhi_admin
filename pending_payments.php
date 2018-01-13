@@ -4,7 +4,7 @@
   <!-- Content Wrapper. Contains page content -->
 <?php 
    $url = "http://test.vaibhavnidhi.com/api/admin/rd/due";
-   header('Content-type: application/json');
+   //header('Content-type: application/json');
    $data = file_get_contents($url);
    $rd_due_data = json_decode($data);
 
@@ -60,7 +60,12 @@
                     <td id="due_<?php echo $rd_data->lead_id; ?>"><?php echo $rd_data->due_date;  ?></td>
                     <td><a href="#" id="amountreceived_<?php echo $rd_data->lead_id; ?>" class="amount_recieve_btn" data-toggle="tooltip" title="Installment Received"><i class="fa fa-money"></i>Installment Received</a></td>
                   </tr>
-                  <?php endforeach; } ?>  
+                  <?php endforeach; } 
+                     else
+                     {
+                         echo '<script> window.location = "error.php"; </script>';
+                     }
+                  ?>  
                 </tbody>
                 <tfoot>
                   <tr>

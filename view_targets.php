@@ -4,7 +4,7 @@
   <!-- Content Wrapper. Contains page content -->
   <?php
       $url = "http://test.vaibhavnidhi.com/api/admin/get_targets";
-      header('Content-type: application/json');
+      //header('Content-type: application/json');
       $data = file_get_contents($url);
       $targets_data = json_decode($data);
 
@@ -52,7 +52,13 @@
                     <td><?php echo $target_data->pre_month_target; ?></td>
                     <td><?php echo $target_data->pre_month_achieved; ?></td>
                   </tr>
-                  <?php endforeach; } ?>
+                  <?php endforeach; 
+                  }
+                  else
+                  {
+                      echo '<script> window.location = "error.php"; </script>';
+                  }
+                  ?>
                 </tbody>
                 <tfoot>
                   <tr>

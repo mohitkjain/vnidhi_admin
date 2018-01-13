@@ -4,7 +4,7 @@
   <!-- Content Wrapper. Contains page content -->
   <?php
       $url = "http://test.vaibhavnidhi.com/api/admin/get_targets";
-      header('Content-type: application/json');
+      //header('Content-type: application/json');
       $data = file_get_contents($url);
       $targets_data = json_decode($data);
 
@@ -20,6 +20,10 @@
             $target_users_data[$key]['pre_achieved'] = $target_data->pre_month_achieved;
             $target_users_data[$key]['current_target'] = $target_data->current_month_target;
         }
+      }
+      else
+      {
+          echo '<script> window.location = "error.php"; </script>';
       }
   ?>
   <div class="content-wrapper">

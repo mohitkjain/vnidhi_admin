@@ -24,6 +24,10 @@ if($_SERVER['REQUEST_METHOD']=='GET')
   $current_month = date("m");
   $current_year = date("Y");
 }
+else
+{
+    echo '<script> window.location = "error.php"; </script>';
+}
 
 ?>
   <!-- Content Wrapper. Contains page content -->

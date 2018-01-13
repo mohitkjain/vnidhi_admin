@@ -10,7 +10,7 @@
     $lead_id = trim($_REQUEST['lead_id']);
   }
     $url = "http://test.vaibhavnidhi.com/api/leads/info/".$lead_id;
-    header('Content-type: application/json');
+    //header('Content-type: application/json');
     $data = file_get_contents($url);
     $leads_data = json_decode($data);
     $lead_type; $c_name; $c_address; $c_mobile; $c_email; $description;
@@ -267,7 +267,7 @@
       </div>
       <?php
         $url = "http://test.vaibhavnidhi.com/api/leads/comments/".$lead_id;
-        header('Content-type: application/json');
+        //header('Content-type: application/json');
         $data = file_get_contents($url);
         $comments_data = json_decode($data);
         
