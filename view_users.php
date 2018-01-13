@@ -73,18 +73,48 @@
                     <td id="fname_<?php echo $user->user_id;  ?>"><?php echo $user->fname;  ?></td>
                     <td id="lname_<?php echo $user->user_id;  ?>"><?php echo $user->lname;  ?></td>
                     <td id="login_<?php echo $user->user_id;  ?>"><?php echo $user->loginid;  ?></td>
-                    <td id="usertype_<?php echo $user->user_id;  ?>"><?php echo $user->usertype;  ?></td>
+                    <td id="usertype_<?php echo $user->user_id;  ?>">
+                      <span class="label label-<?php 
+                                                    if($user->usertype === 'Head') 
+                                                    {
+                                                      echo 'head';
+                                                    }
+                                                    else if($user->usertype === 'Teamleader')
+                                                    {
+                                                      echo 'teamleader';
+                                                    }  
+                                                    else if($user->usertype === 'Telecaller')
+                                                    {
+                                                      echo 'telecaller';
+                                                    } 
+                                                    else if($user->usertype === 'Salaried')
+                                                    {
+                                                      echo 'salaried';
+                                                    }                                                                                                                       
+                                                  ?>"><?php echo $user->usertype;  ?>
+                      </span>
+                    </td>
                     <td id="empid_<?php echo $user->user_id;  ?>"><?php echo $user->empid;  ?></td>
                     <td id="position_<?php echo $user->user_id; ?>"><?php echo $user->position;  ?></td>
                     <td id="tlname_<?php echo $user->user_id;  ?>"><?php echo $user->tl_name;  ?></td>
-                    <td><?php if($user->active == 1)
-                              {
-                                  echo 'Active';
-                              }
-                              else
-                              {
-                                  echo 'Inactive';
-                              }  ?>
+                    <td><span class="label label-<?php 
+                                                    if($user->active == 1) 
+                                                    {
+                                                      echo 'active';
+                                                    }
+                                                    else
+                                                    {
+                                                      echo 'inactive';
+                                                    }                                                                                                                        
+                                                  ?>"><?php if($user->active == 1)
+                                                      {
+                                                          echo 'Active';
+                                                      }
+                                                      else
+                                                      {
+                                                          echo 'Inactive';
+                                                      }  
+                                                      ?></span>
                     </td>
                     <td>
                     <?php  if($user->active == 1) {?>

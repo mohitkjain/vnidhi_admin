@@ -135,11 +135,50 @@
             {
                 var user = [];
                 var month = data[i].month;
-                
+                var span_class;
+                switch (month) 
+                {
+                  case '1':
+                    span_class = "jan";
+                    break;
+                  case '2':
+                    span_class  = "feb";
+                    break;
+                  case '3':
+                    span_class = "mar";
+                    break;
+                  case '4':
+                    span_class = "april";
+                    break;
+                  case '5':
+                    span_class = "may";
+                    break;
+                  case '6':
+                    span_class = "june";
+                    break;
+                  case '7':
+                    span_class = "july";
+                    break;
+                  case '8':
+                    span_class  = "aug";
+                    break;
+                  case '9':
+                    span_class = "sept";
+                    break;
+                  case '10':
+                    span_class = "oct";
+                    break;
+                  case '11':
+                    span_class = "nov";
+                    break;
+                  case '12':
+                    span_class = "dec";
+                    break;
+                }
                 var id = $.base64.encode('incentive_'+ data[i].user_id + '_' + usertype);
                 user.push("<a href='incentive_details.php?id=" + id +"'>" +data[i].user_name +"</a>");
                 user.push(data[i].position);
-                user.push(monthNames[month-1]);
+                user.push("<span class='label label-"+ span_class + "'>" + monthNames[month-1] + "</span>");
                 user.push(data[i].year);               
                 user.push(parseInt(data[i].user_incentive).toLocaleString("en-IN",{style:"currency",currency:"INR"}));
                 user.push("<a href='#' id='pay_" + data[i].user_id + "' class='paid_btn' ><i class='fa fa-paypal'></i>Pay</a>");

@@ -23,8 +23,6 @@
   <link rel="stylesheet" href="bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
   <!-- Daterange picker -->
   <link rel="stylesheet" href="bower_components/bootstrap-daterangepicker/daterangepicker.css">
-  <!-- Select2 -->
-  <link rel="stylesheet" href="bower_components/select2/dist/css/select2.min.css">
   
 	<!-- DataTables -->
   <link rel="stylesheet" href="bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
@@ -34,38 +32,34 @@
   
 	<!-- jQuery 3 -->
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
-<!-- jQuery UI 1.11.4 -->
-<script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
-
+  <!-- jQuery UI 1.11.4 -->
+  <script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
 	<!-- DataTables -->
 	<script src="bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-	<script src="bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-	
+	<script src="bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>	
 
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script>
-  $.widget.bridge('uibutton', $.ui.button);
-</script>
-<!-- Bootstrap 3.3.7 -->
-<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- Morris.js charts -->
-<script src="bower_components/raphael/raphael.min.js"></script>
-<script src="bower_components/morris.js/morris.min.js"></script>
-<!-- Select2 -->
-<script src="bower_components/select2/dist/js/select2.full.min.js"></script>
-<script src="bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-<!-- Slimscroll -->
-<script src="bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-<!-- FastClick -->
-<script src="bower_components/fastclick/lib/fastclick.js"></script>
-<!-- AdminLTE App -->
-<script src="dist/js/adminlte.min.js"></script>
+  <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+  <script>
+    $.widget.bridge('uibutton', $.ui.button);
+  </script>
+  <!-- Bootstrap 3.3.7 -->
+  <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <!-- Morris.js charts -->
+  <script src="bower_components/raphael/raphael.min.js"></script>
+  <script src="bower_components/morris.js/morris.min.js"></script>
 
-<!--base64-->
-<script src="bower_components/base64/jquery.base64.js"></script>
-	
+  <script src="bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+  <!-- Slimscroll -->
+  <script src="bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+  <!-- FastClick -->
+  <script src="bower_components/fastclick/lib/fastclick.js"></script>
+  <!-- AdminLTE App -->
+  <script src="dist/js/adminlte.min.js"></script>
 
-<!-- ChartJS -->
-<script src="bower_components/chart.js/Chart.js"></script>
-<!-- page script -->
+  <!--base64-->
+  <script src="bower_components/base64/jquery.base64.js"></script>
+
+  <!-- ChartJS -->
+  <script src="bower_components/chart.js/Chart.js"></script>
+  <!-- page script -->
 </head>

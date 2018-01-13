@@ -6852,3 +6852,109 @@ table.text-center th {
 .text-declined {
     color: #b70a2c !important
 }
+
+.label-inactive,
+.label-telecalling {
+    color: #fff !important;
+    background-color: #A9A9A9 !important;
+}
+
+.label-home-meeting {
+    color: #fff !important;
+    background-color: #c96116 !important;
+}
+
+.label-follow-up {
+    color: #fff !important;
+    background-color: #0386c1 !important;
+}
+
+.label-request-pending {
+    color: #fff !important;
+    background-color: #d4b115 !important;
+}
+
+.label-active,
+.label-accepted {
+    color: #fff !important;
+    background-color: #43A047 !important;
+}
+
+.label-declined {
+    color: #fff !important;
+    background-color: #b70a2c !important;
+}
+
+.label-telecaller {
+    color: #fff !important;
+    background-color: #BA68C8 !important;
+}
+.label-teamleader {
+    color: #fff !important;
+    background-color: #009688 !important;
+}
+.label-head {
+    color: #fff !important;
+    background-color: #0288D1 !important;
+}
+.label-salaried {
+    color: #fff !important;
+    background-color: #FF5252 !important;
+}
+.label-company {
+    color: #fff !important;
+    background-color: #8458d6 !important;
+}
+.label-direct {
+    color: #fff !important;
+    background-color: #13baab !important;
+}
+
+.label-jan {
+    color: #fff !important;
+    background-color: #EF5350 !important;
+}
+.label-feb {
+    color: #fff !important;
+    background-color: #9575CD !important;
+}
+.label-mar {
+    color: #fff !important;
+    background-color: #EC407A !important;
+}
+.label-april {
+    color: #fff !important;
+    background-color: #7986CB !important;
+}
+.label-may {
+    color: #fff !important;
+    background-color: #BA68C8 !important;
+}
+.label-june {
+    color: #fff !important;
+    background-color: #1E88E5 !important;
+}
+.label-july {
+    color: #fff !important;
+    background-color: #009688 !important;
+}
+.label-aug {
+    color: #fff !important;
+    background-color: #827717 !important;
+}
+.label-sept {
+    color: #fff !important;
+    background-color: #43A047 !important;
+}
+.label-oct {
+    color: #fff !important;
+    background-color: #E65100 !important;
+}
+.label-nov {
+    color: #fff !important;
+    background-color: #F4511E !important;
+}
+.label-dec {
+    color: #fff !important;
+    background-color: #A1887F !important;
+}

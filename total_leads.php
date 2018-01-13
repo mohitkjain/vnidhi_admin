@@ -26,7 +26,7 @@
       <div class="row">
         <div class="col-xs-12">      
 
-          <div class="box">            
+          <div class="box box-info">            
             <!-- /.box-header -->
             <div class="box-body">
               <table id="example1" class="table table-bordered table-striped leads_table">
@@ -45,7 +45,34 @@
                 <?php foreach($total_leads_data as $lead_data):?>
                   <td><?php echo $lead_data->lead_id; ?></td>
                   <td><?php echo '<a href="leads_details.php?lead_id=' .$lead_data->lead_id.'">'.$lead_data->c_name.'</a>'; ?></td>
-                  <td><?php echo $lead_data->status; ?></td>
+                  <td>
+                    <span class="label label-<?php 
+                                                    if($lead_data->status === 'Telecalling Done') 
+                                                    {
+                                                      echo 'telecalling';
+                                                    }
+                                                    else if($lead_data->status === 'Home Meeting')
+                                                    {
+                                                      echo 'home-meeting';
+                                                    }
+                                                    else if($lead_data->status === 'Follow Up')
+                                                    {
+                                                      echo 'follow-up';
+                                                    }
+                                                    else if($lead_data->status === 'Request Pending')
+                                                    {
+                                                      echo 'request-pending';
+                                                    }  
+                                                    else if($lead_data->status === 'Accepted')
+                                                    {
+                                                      echo 'accepted';
+                                                    }    
+                                                    else if($lead_data->status === 'Declined')
+                                                    {
+                                                      echo 'declined';
+                                                    }                                                                      
+                                                  ?>"><?php echo $lead_data->status; ?></span>
+                  </td>
                   <td><?php echo $lead_data->creator_name; ?></td>
                   <td><?php echo $lead_data->assignee_name; ?></td>
                   <td><?php echo $lead_data->date_created; ?></td>

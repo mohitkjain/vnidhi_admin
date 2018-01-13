@@ -44,7 +44,16 @@
                   <?php foreach($rewards_data as $reward_data):?>
                   <tr>
                     <td><?php echo $reward_data->user_type;  ?></td>
-                    <td>
+                    <td><span class="label label-<?php 
+                                                    if($reward_data->lead_type === 'company_lead') 
+                                                    {
+                                                      echo 'company';
+                                                    }
+                                                    else
+                                                    {
+                                                      echo 'direct';
+                                                    }                                                                      
+                                                  ?>">
                       <?php 
                           if($reward_data->lead_type === 'company_lead')
                           {
@@ -58,6 +67,7 @@
                           }
                           $data = base64_encode($reward_data->id.'_'.$reward_data->user_type.'_'.$lead_type.'_'.$reward_data->year_wise.'_'.$reward_data->reward_per);
                       ?>
+                      </span>
                     </td>
                     <td>
                       <?php 

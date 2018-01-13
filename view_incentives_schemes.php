@@ -165,7 +165,7 @@
                 var id = $.base64.encode('incentive_'+ lead_type + '_' + data[i].schemeType + '_' + usertype + '_' + data[i].duration + '_' + incentive);
                 scheme.push(data[i].no);
                 scheme.push(schemeType);
-                scheme.push(leadType);
+                scheme.push("<span class='label label-" + lead_type + "'>" + leadType + "</span>");
                 scheme.push(data[i].duration);
                 scheme.push(data[i].incentive);
                 scheme.push("<a href='edit_incentive_scheme.php?data=" + id + "' class='edit_incentive_btn' id='edit_' data-toggle='tooltip' title='Edit'><i class='fa fa-edit'></i>Edit</a>");
