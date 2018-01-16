@@ -15,7 +15,7 @@
     </section>
     <?php
       $url = "http://test.vaibhavnidhi.com/api/admin/leads_stats";
-      header('Content-type: application/json');
+      //header('Content-type: application/json');
       $data = file_get_contents($url);
       $lead_data = json_decode($data);
       $lead_arrays = array('telecalling_done' => 0,'home_meeting' => 0,'follow_up' => 0,'request_pending' => 0,'accepted' => 0,'declined' => 0);

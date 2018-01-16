@@ -171,7 +171,7 @@ else
                 ?>
                 <tr>
                   <td><?php echo $fd_data->lead_id; ?></td>
-                  <td><a href="leads_details.php?lead_id=<?php echo $rd_data->lead_id; ?>"><?php echo $fd_data->c_name; ?></td>
+                  <td><a href="leads_details.php?lead_id=<?php echo $fd_data->lead_id; ?>"><?php echo $fd_data->c_name; ?></td>
                   <td><?php echo 'Fixed Deposit'; ?></td>            
                   <td><?php echo $fd_data->date; ?></td>
                   <td>

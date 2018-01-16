@@ -37,14 +37,14 @@
                     <th>Creator Name</th>
                     <th>Assignee Name</th>
                     <th>Date Created</th>
-                    <th>Date Accepted</th>
+                    <th>Date Declined</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <?php foreach($declined_leads_data as $lead_data):?>
                       <td><?php echo $lead_data->lead_id; ?></td>
-                      <td><?php echo '<a href="leads_details.php?lead_id=' .$lead_data->lead_id.'">'.$lead_data->c_name.'</a>'; ?></td>
+                      <td><?php echo '<a href="leads_details.php?lead_id='.$lead_data->lead_id.'">'.$lead_data->c_name.'</a>'; ?></td>
                       <td><?php echo $lead_data->creator_name; ?></td>
                       <td><?php echo $lead_data->assignee_name; ?></td>
                       <td><?php echo $lead_data->date_created; ?></td>
@@ -64,7 +64,7 @@
                     <th>Creator Name</th>
                     <th>Assignee Name</th>
                     <th>Date Created</th>
-                    <th>Date Accepted</th>
+                    <th>Date Declined</th>
                   </tr>
                 </tfoot>
               </table>
