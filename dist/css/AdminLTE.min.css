@@ -4059,7 +4059,13 @@ table.text-center th {
     background: #fff;
     border: 1px solid #f4f4f4;
     padding: 20px;
-    margin: 10px 25px
+    margin: 0px 0px;
+    float: left;
+    width: 100%;
+}
+
+.invoice_print {
+    padding: 0px;
 }
 
 .invoice-title {
@@ -6958,3 +6964,387 @@ table.text-center th {
     color: #fff !important;
     background-color: #A1887F !important;
 }
+
+
+
+/*============================ Invoice Css Start Here ====================================*/
+
+.invoice_header {
+    width: 100%;
+    float: left;
+    padding: 15px;
+    margin-bottom: 20px;
+    background: #00A0E3;
+    box-sizing: border-box;
+  }
+
+ .invoice_head_address .address {
+    margin-bottom: 0px;
+    width: 350px;
+    float: right;
+    text-align: right;
+    color: #FFF;
+    font-size: 14px;
+    line-height: 22px;
+  }
+  
+  .invoice_logo {
+    width: 250px;
+    margin: 0px;
+    padding: 10px 0 0 0;
+    float: left;
+  }
+
+  .invoice_logo img {
+    width: 100%;
+  }
+
+  .invoice_head_address {
+      float:right;
+  }
+
+
+.billed_section span {
+    color:#908C8C;
+    font-size: 15px;
+}
+
+.billed_section address, .billed_section em {
+    color:#000;
+    font-size: 15px;
+    line-height: 28px;
+    font-style: normal;
+}
+
+.padd5 {
+    padding-bottom: 5px;
+}
+
+.padd25 {
+    padding-bottom: 25px; 
+}
+
+.loan_section {
+    background: #222d32;
+    color: #FFF;
+    font-size: 16px;
+    line-height: 28px;
+    font-style: normal;
+    padding: 15px 20px;
+    text-align: right;
+}
+
+.loan_amount b {
+    font-size: 30px;
+    display: block;
+    width: 100%;
+    line-height: 30px;
+}
+
+.loan_amount {
+    font-size: 100px;
+    font-weight: 500;
+    line-height: 80px;
+}
+
+.user_img {
+    width: 104px;
+    float: left;    
+    padding-right: 15px;
+    padding-top: 5px;
+}
+
+.user_img img {
+    width: 100%;
+}
+
+.user_address_section {
+    width: 60%;
+    float: left;
+}
+
+.user_invoice_details {
+    width: 40%;
+    float:left;
+}
+
+.user_invoice_details ul {
+    margin:0px;
+    padding:0px;
+    list-style: none;
+}
+
+.user_invoice_details ul li {
+    width:100%;
+    float: left;
+    padding-bottom: 0px;
+    text-align: right;
+}
+
+
+
+
+.invoice_total {
+    text-align:right;
+}
+
+.invoice_total th {
+    text-align: right;
+    font-size: 18px;
+    font-weight: 600;
+    color: #3380BD;
+}
+
+.invoice_total td {
+    text-align:right;
+    font-size: 20px;
+}
+
+.invoice .lead {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.invoice .lead span {
+    color: #0099ff;
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.jewellery_img {
+    background: #fff;
+    border: solid 2px #dadada;
+    margin-bottom: 0px;
+}
+
+.jewellery_img img {
+    width:100%;
+}
+
+.loan_grid {
+    width:100%;
+    float:left;
+}
+
+.loan_grid table {
+    border:solid 1px #ccc;
+    border-collapse: collapse;
+}
+.loan_grid .table>tbody>tr>td {
+    border:solid 1px #ccc;
+    padding:10px 10px;
+    vertical-align: top;
+}
+
+.demand_note_section {
+    border:solid 1px #ccc;
+    margin-top:30px;
+    margin-bottom: 30px;
+}
+
+.branch_manager {
+    width:65%;
+    font-size: 11px;
+    line-height: 20px !important;
+}
+
+.debtor_section {
+    width:35%;
+    font-size: 11px;
+    line-height: 20px !important;
+}
+
+.loan_grid .sign, .loan_grid .sign_customer {
+    width: 100%;
+    float: right;
+    text-align: right;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.loan_grid .sign_customer {
+    padding-top: 10px;
+}
+
+.demand_note_tbl, .demand_note_tbl td {
+    border:none !important;
+}
+
+.demand_note_tbl h3 {
+    padding-top:20px;
+}
+
+.demand_note_tbl h3, .terms_condition_section h3 {
+    text-align:center;
+    font-weight: 800;
+    margin-top: 0;
+    font-size: 16px;
+    margin-bottom: 0;
+    padding-top: 0;
+}
+
+.text_right {
+    text-align:right;
+}
+
+.branch_manager b {
+    font-size: 16px;
+    padding: 0px 0px 0px 0px !important;
+}
+
+.terms_condition_section {
+    width:100%;
+    float:left;
+    padding:10px 0px 20px 0px;
+}
+
+.terms_condition_section h3 {
+    padding-bottom: 0px;
+}
+
+.terms_condition_section ul {
+    margin:0px;
+    padding:0px;
+}
+
+.terms_condition_section li {
+    font-size: 10px;
+    line-height: 16px !important;
+    padding-bottom: 6px;
+}
+
+.billedto_section {
+    width:300px;
+    float: left;
+}
+
+.gold_loan_details {
+    width:100%;
+    float:left;
+    padding-top:20px;
+}
+
+.gold_loan_details_left {
+    width:80%;
+    float:left;
+}
+
+.gold_loan_details_right {
+    width:20%;
+    float:left;
+}
+
+.loan_description, .gold_loan_list {
+    width:100%;
+    float:left;
+}
+
+.gold_loan_list {
+    padding-top: 0px;
+}
+
+.gold_loan_list ul {
+    margin:0px;
+    padding:0px;
+    list-style: none;
+}
+
+.gold_loan_list li {
+    width:50%;
+    float:left;
+    padding-bottom:5px;
+}
+
+.loan_payment_section {
+    width:100%;
+    float:left;
+    padding-top: 15px;
+    padding-bottom: 20px;
+}
+
+.payment_option_left {
+    width:50%;
+    float:left;
+}
+
+.payment_lead span, .payment_lead em {
+    font-size:18px;
+}
+
+.payment_option_right {
+    width:50%;
+    float:left;
+}
+
+.payment_option_right ul {
+    margin:0px;
+    padding:0px;
+    list-style: none;
+}
+
+.payment_option_right ul li {
+    width:100%;
+    float: left;
+    padding-bottom: 0px;
+    text-align: right;
+}
+
+.payment_option_right ul li span {
+    font-size:15px;
+    font-weight:700;
+    color:#000;
+}
+
+.no-print {
+    width:100%;
+    float:left;
+    clear:both;
+    margin: 0;
+}
+.invoice_user_details h4 {
+    text-align: center;
+    margin-bottom: 0px;
+}
+
+.date_left {
+    width:50%;
+    float:left;
+}
+
+.sign_right {
+    width:50%;
+    float:right;
+}
+
+.invoice_print_btn{
+    display: block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid #2e6da4;
+    border-radius: 4px;
+    color: #fff;
+    background-color: #337ab7;
+    margin: auto;
+}
+
+.invoice_print_btn:hover {
+    color: #fff;
+    background-color: #286090;
+    border-color: #204d74;
+}
+

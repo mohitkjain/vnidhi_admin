@@ -55,7 +55,7 @@
             <li><a href="total_leads.php"><i class="fa fa-circle-o"></i> Total Leads</a></li>			  
             <li><a href="active_leads.php"><i class="fa fa-circle-o"></i> Active Leads</a></li>
             <li><a href="accepted_leads.php"><i class="fa fa-circle-o"></i> Accepted Leads</a></li>
-			<li><a href="declined_leads.php"><i class="fa fa-circle-o"></i> Declined Leads</a></li>
+			      <li><a href="declined_leads.php"><i class="fa fa-circle-o"></i> Declined Leads</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -65,7 +65,7 @@
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
-		  <ul class="treeview-menu">
+		      <ul class="treeview-menu">
             <li><a href="view_users.php"><i class="fa fa-circle-o"></i> View/Edit Users</a></li>
             <li><a href="add_user.php"><i class="fa fa-circle-o"></i> Add User</a></li>
           </ul>
@@ -110,7 +110,20 @@
             <li><a href="rewards_policy.php"><i class="fa fa-circle-o"></i> Rewards Policy </a></li>
             <li><a href="redemption_policy.php"><i class="fa fa-circle-o"></i> Redemption Policy</a></li>
           </ul>
-        </li>       
+        </li> 
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-laptop"></i>
+            <span>Loans</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="view_gold_loans.php"><i class="fa fa-circle-o"></i> View Gold Loans</a></li>
+            <li><a href="add_gold_loan.php"><i class="fa fa-circle-o"></i> Add Gold Loan</a></li>
+          </ul>
+        </li>      
        
         <li class="header">Quick Links</li>
         <li><a href="pending_payments.php"><i class="fa fa-circle-o text-yellow"></i> <span>Pending Payments</span></a></li>
