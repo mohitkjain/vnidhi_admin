@@ -337,11 +337,13 @@ $(document).ready(function ()
       {
         $(this).next('#span_field_error').remove();
         $(this).after('<span id="span_field_error" class="error error-keyup-1">This field is required.</span>');
+        $(this).css('border', 'solid 1px red');
         $(this).focus();
       } 
       else
        {
         $(this).next('#span_field_error').remove();
+        $(this).css('border', 'solid 1px #d2d6de');
       }
     });
 });
@@ -354,11 +356,13 @@ $(document).ready(function ()
       {
         $(this).next('#span_field_error').remove();
         $(this).after('<span id="span_field_error" class="error error-keyup-1">Numeric characters only.</span>');
+        $(this).css('border', 'solid 1px red');
         $(this).focus();
       } 
       else
        {
         $(this).next('#span_field_error').remove();
+        $(this).css('border', 'solid 1px #d2d6de');
       }
     });
 });
@@ -372,11 +376,13 @@ $(document).ready(function ()
       {
         $(this).next('#span_field_error').remove();
         $(this).after('<span id="span_field_error" class="error error-keyup-1">Numeric/Decimal characters only.</span>');
+        $(this).css('border', 'solid 1px red');
         $(this).focus();
       } 
       else
        {
         $(this).next('#span_field_error').remove();
+        $(this).css('border', 'solid 1px #d2d6de');
       }
     });
 });
